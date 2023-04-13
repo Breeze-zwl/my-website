@@ -31,13 +31,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { CloseOne, SettingTwo } from "@icon-park/vue-next";
-import TimeCapsule from "@/components/TimeCapsule/index.vue";
-import { mainStore } from "@/store";
-const store = mainStore();
+import { ref } from 'vue'
+import { CloseOne, SettingTwo } from '@icon-park/vue-next'
+import TimeCapsule from '@/components/TimeCapsule/index.vue'
+import { mainStore } from '@/store'
+const store = mainStore()
 
-let closeShow = ref(false);
+let closeShow = ref(false)
 </script>
 
 <style lang="scss" scoped>

@@ -10,6 +10,7 @@
 本站使用了很多API，如果某个功能不能用了，大概率API不稳定
  想要壁纸  https://www.dujin.org/  https://www.dmoe.cc
  一堆API  https://api.btstu.cn/
+ 打印机效果  https://github.com/pengqiangsheng/easy-typer-js
 
 - [快速入口](https://zwl-turnback.cn/)
 

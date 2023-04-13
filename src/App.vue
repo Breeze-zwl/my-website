@@ -2,6 +2,15 @@
   <div class="animate">
     <Background />
     <main>
+      <transition name="el-fade-in-linear">
+        <setting-two
+          class="setting"
+          theme="filled"
+          size="28"
+          fill="#ffffff60"
+          @click="store.setOpenState = true"
+        />
+      </transition>
       <div class="container" v-show="!store.backgroundShow">
         <section class="main" v-show="!store.setOpenState">
           <MainLeft />
@@ -33,7 +42,7 @@ import { onMounted, onBeforeUnmount, watch } from 'vue'
 import { helloInit, checkDays } from '@/utils/getTime.js'
 import { mainStore } from '@/store'
 import { Icon } from '@vicons/utils'
-import { HamburgerButton, CloseSmall } from '@icon-park/vue-next'
+import { HamburgerButton, CloseSmall, SettingTwo } from '@icon-park/vue-next'
 import MainLeft from '@/views/Main/Left.vue'
 import MainRight from '@/views/Main/Right.vue'
 import Background from '@/components/Background/index.vue'
@@ -120,6 +129,11 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 main {
+  .setting {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
   .container {
     width: 100%;
     height: 100vh;
