@@ -1,10 +1,10 @@
 {
   "name": "home",
-  "author": "imsyy",
-  "github": "https://github.com/imsyy/home",
-  "home": "https://imsyy.top",
+  "author": "zwl",
+  "github": "https://github.com/W-xiaowei",
+  "home": "www.zwl-turnback.cn",
   "private": true,
-  "version": "4.0.3",
+  "version": "2.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite --host",

@@ -15,12 +15,12 @@
         @click="store.setOpenState = false"
       />
     </transition>
+    <div class="logo text-hidden">
+      <span class="bg">{{ siteUrl[0] }}</span>
+      <span class="sm">.{{ siteUrl[1] }}</span>
+    </div>
     <el-row :gutter="40">
       <el-col :span="12" class="left">
-        <div class="logo text-hidden">
-          <span class="bg">{{ siteUrl[0] }}</span>
-          <span class="sm">.{{ siteUrl[1] }}</span>
-        </div>
         <div class="version">
           <div class="num">v&nbsp;{{ config.version }}</div>
           <el-tooltip
@@ -66,44 +66,46 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive, ref } from 'vue'
 import {
   CloseOne,
   SettingTwo,
   GithubOne,
   AddOne,
   Bug,
-} from "@icon-park/vue-next";
-import { mainStore } from "@/store";
-import Set from "@/components/Set/index.vue";
-import config from "@/../package.json";
-const store = mainStore();
+} from '@icon-park/vue-next'
+import { mainStore } from '@/store'
+import Set from '@/components/Set/index.vue'
+import config from '@/../package.json'
+const store = mainStore()
 
-let closeShow = ref(false);
+let closeShow = ref(false)
 
 // 站点链接
-let siteUrl = import.meta.env.VITE_SITE_URL.split(".");
+let siteUrl = import.meta.env.VITE_SITE_URL.split('.')
 
 // 更新日志
 let upData = reactive({
   new: [
-    "采用 Vue 进行重构",
-    "音乐歌单支持快速自定义",
-    "壁纸支持个性化设置",
-    "音乐播放器支持音量控制",
+    // "采用 Vue 进行重构",
+    // "音乐歌单支持快速自定义",
+    // "壁纸支持个性化设置",
+    // "音乐播放器支持音量控制",
+    '这是第一次添加',
   ],
   fix: [
-    "修复天气 API",
-    "时光胶囊显示错误",
-    "移动端动画及细节",
-    "图标更换为 IconPark",
+    // "修复天气 API",
+    // "时光胶囊显示错误",
+    // "移动端动画及细节",
+    // "图标更换为 IconPark",
+    '我的头发，先救我的头发！！！',
   ],
-});
+})
 
 // 跳转源代码仓库
 const jumpTo = (url) => {
-  window.open(url);
-};
+  window.open(url)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -118,7 +120,22 @@ const jumpTo = (url) => {
   background: rgb(255 255 255 / 40%);
   border-radius: 6px;
   padding: 40px;
+  .logo {
+    transform: translateY(-8%);
+    font-family: 'Pacifico-Regular';
+    // line-height: 5rem;
+    width: 100%;
+    // height: 260px;
 
+    .bg {
+      font-size: 5rem;
+    }
+
+    .sm {
+      margin-left: 6px;
+      font-size: 2rem;
+    }
+  }
   .close {
     position: absolute;
     top: 14px;
@@ -140,29 +157,12 @@ const jumpTo = (url) => {
     flex-wrap: nowrap;
 
     .left {
-      height: 100%;
+      height: 77%;
       padding-left: 40px !important;
       padding-bottom: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-
-      .logo {
-        transform: translateY(-8%);
-        font-family: "Pacifico-Regular";
-        // line-height: 5rem;
-        width: 100%;
-        height: 260px;
-
-        .bg {
-          font-size: 5rem;
-        }
-
-        .sm {
-          margin-left: 6px;
-          font-size: 2rem;
-        }
-      }
 
       .version {
         display: flex;
@@ -171,7 +171,7 @@ const jumpTo = (url) => {
 
         .num {
           font-size: 2rem;
-          font-family: "Pacifico-Regular";
+          font-family: 'Pacifico-Regular';
         }
 
         .github {
@@ -220,7 +220,7 @@ const jumpTo = (url) => {
     }
 
     .right {
-      height: 100%;
+      height: 77%;
       padding-right: 40px !important;
       display: flex;
       flex-direction: column;

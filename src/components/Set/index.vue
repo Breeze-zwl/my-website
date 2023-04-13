@@ -23,39 +23,39 @@
         </div>
       </el-collapse-item>
       <el-collapse-item title="其他设置" name="3">
-        <div>设置内容待增加</div>
+        <div>没时间啦</div>
       </el-collapse-item>
       <el-collapse-item title="其他设置" name="4">
-        <div>设置内容待增加</div>
+        <div>没时间啦</div>
       </el-collapse-item>
     </el-collapse>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from "vue";
-import { mainStore } from "@/store";
-import { CheckSmall, CloseSmall } from "@icon-park/vue-next";
-import { storeToRefs } from "pinia";
+import { ref, onMounted, watch } from 'vue'
+import { mainStore } from '@/store'
+import { CheckSmall, CloseSmall } from '@icon-park/vue-next'
+import { storeToRefs } from 'pinia'
 
-const store = mainStore();
-const { siteStartShow } = storeToRefs(store);
+const store = mainStore()
+const { siteStartShow } = storeToRefs(store)
 
 // 默认选中项
-let activeName = ref("1");
-let bgSet = ref("0");
+let activeName = ref('1')
+let bgSet = ref('0')
 
 onMounted(() => {
-  bgSet.value = store.coverType.toString();
-});
+  bgSet.value = store.coverType.toString()
+})
 
 // 壁纸选中项
 watch(
   () => bgSet.value,
   (value) => {
-    store.coverType = value;
+    store.coverType = value
   }
-);
+)
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,7 @@
 <template>
   <div class="cover">
     <img class="bg" :src="bgUrl" alt="cover" />
-    <div :class="store.backgroundShow ? 'gray sm' : 'gray'" />
+    <div :class="!store.backgroundShow ? 'gray sm' : 'gray'" />
     <transition name="el-fade-in-linear">
       <a
         class="down"
@@ -15,46 +15,49 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch, h } from "vue";
-import { SuccessPicture } from "@icon-park/vue-next";
-import { mainStore } from "@/store";
-const store = mainStore();
+import { onMounted, ref, watch, h } from 'vue'
+import { SuccessPicture } from '@icon-park/vue-next'
+import { mainStore } from '@/store'
+const store = mainStore()
 
-let bgUrl = ref(null); // 壁纸链接
-
+let bgUrl = ref(null) // 壁纸链接
+// 想要壁纸 这里 https://www.dujin.org/ 这里 https://www.dmoe.cc
+// 一堆API  https://api.btstu.cn/
 const changeBg = (type) => {
   if (type == 0) {
-    bgUrl.value = `/images/background${Math.floor(
-      Math.random() * 10 + 1
-    )}.webp`;
+    //默认壁纸
+    bgUrl.value = `/images/background${Math.floor(Math.random() * 10 + 1)}.webp`
   } else if (type == 1) {
-    bgUrl.value = "https://api.dujin.org/bing/1920.php";
+    //每日一图
+    bgUrl.value = 'https://api.dujin.org/bing/1920.php'
   } else if (type == 2) {
-    bgUrl.value = "https://api.btstu.cn/sjbz/api.php?lx=fengjing&format=images";
+    //随机风景
+    bgUrl.value = 'https://api.btstu.cn/sjbz/api.php?lx=fengjing&format=images'
   } else if (type == 3) {
-    bgUrl.value = "https://www.dmoe.cc/random.php";
+    //随机动漫
+    bgUrl.value = 'https://www.dmoe.cc/random.php'
   }
-};
+}
 
 onMounted(() => {
   // 加载壁纸
-  changeBg(store.coverType);
-});
+  changeBg(store.coverType)
+})
 
 // 监听壁纸种类变化
 watch(
   () => store.coverType,
   (value) => {
-    changeBg(value);
+    changeBg(value)
     ElMessage({
-      message: "壁纸设置成功",
+      message: '壁纸设置成功',
       icon: h(SuccessPicture, {
-        theme: "filled",
-        fill: "#efefef",
+        theme: 'filled',
+        fill: '#efefef',
       }),
-    });
+    })
   }
-);
+)
 </script>
 
 <style lang="scss" scoped>

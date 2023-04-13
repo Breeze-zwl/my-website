@@ -6,11 +6,15 @@
         v-for="item in socialLinksData"
         :key="item.name"
         :href="item.url"
-        target="_blank"
+        :target="item.url == '#' ? '' : '_blank'"
         @mouseenter="socialTip = item.tip"
         @mouseleave="socialTip = '通过这里联系我吧'"
       >
-        <img class="icon" :src="item.icon" height="24" />
+        <img
+          class="icon"
+          :src="item.icon"
+          :height="item.height ? item.height : '24'"
+        />
       </a>
     </div>
     <span class="tip">{{ socialTip }}</span>
@@ -18,37 +22,36 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { getSocialLinks } from "@/api";
-import { Error } from "@icon-park/vue-next";
+import { ref, onMounted } from 'vue'
+import { getSocialLinks } from '@/api'
+import { Error } from '@icon-park/vue-next'
 
 // 社交链接数据
-let socialLinksData = ref([]);
-let socialTip = ref("通过这里联系我吧");
+let socialLinksData = ref([])
+let socialTip = ref('通过这里联系我吧')
 
 // 获取社交链接数据
 const getSocialLinksData = () => {
   getSocialLinks()
     .then((res) => {
-      socialLinksData.value = res;
-      console.log(socialLinksData.value);
+      socialLinksData.value = res
     })
     .catch((err) => {
-      console.error(err);
+      console.error(err)
       ElMessage({
-        message: "社交链接获取失败",
+        message: '社交链接获取失败',
         grouping: true,
         icon: h(Error, {
-          theme: "filled",
-          fill: "#efefef",
+          theme: 'filled',
+          fill: '#efefef',
         }),
-      });
-    });
-};
+      })
+    })
+}
 
 onMounted(() => {
-  getSocialLinksData();
-});
+  getSocialLinksData()
+})
 </script>
 
 <style lang="scss" scoped>

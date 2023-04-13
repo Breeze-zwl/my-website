@@ -47,36 +47,36 @@
         :indeterminate="true"
         :stroke-width="6"
         :percentage="80"
-        :duration="2"
+        :duration="4"
       /> -->
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, onBeforeUnmount, ref } from "vue";
-import { HourglassFull } from "@icon-park/vue-next";
-import { getTimeCapsule, siteDateStatistics } from "@/utils/getTime.js";
-import { mainStore } from "@/store";
-const store = mainStore();
+import { onMounted, onBeforeUnmount, ref } from 'vue'
+import { HourglassFull } from '@icon-park/vue-next'
+import { getTimeCapsule, siteDateStatistics } from '@/utils/getTime.js'
+import { mainStore } from '@/store'
+const store = mainStore()
 
 // 进度条数据
-let timeData = ref(getTimeCapsule());
-let startDate = ref(import.meta.env.VITE_SITE_START);
-let startDateText = ref(null);
-let timeInterval = null;
+let timeData = ref(getTimeCapsule())
+let startDate = ref(import.meta.env.VITE_SITE_START)
+let startDateText = ref(null)
+let timeInterval = null
 
 onMounted(() => {
   timeInterval = setInterval(() => {
-    timeData.value = getTimeCapsule();
+    timeData.value = getTimeCapsule()
     if (startDate.value)
-      startDateText.value = siteDateStatistics(new Date(startDate.value));
-  }, 1000);
-});
+      startDateText.value = siteDateStatistics(new Date(startDate.value))
+  }, 1000)
+})
 
 onBeforeUnmount(() => {
-  clearInterval(timeInterval);
-});
+  clearInterval(timeInterval)
+})
 </script>
 
 <style lang="scss" scoped>
