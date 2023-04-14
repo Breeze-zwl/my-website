@@ -75,12 +75,7 @@ let linksData = [
 
 // 链接跳转
 const jumpLink = (url) => {
-  console.log(1111)
-  store.setLinkRouter(true)
-  router.push({
-    path: '/DailyHot',
-  })
-  // window.open(url, '_blank')
+  window.open(url, '_blank')
 }
 </script>
 
