@@ -24,7 +24,7 @@ const routes = [
     meta: {
       title: "全局设置",
     },
-    component: () => import("@/views/Setting.vue"),
+    component: () => import("@/views/DailyHot/Setting.vue"),
   },
   // 测试页面
   // {
