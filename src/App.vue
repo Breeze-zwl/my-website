@@ -39,7 +39,17 @@
       </main>
       <Footer v-show="!store.backgroundShow && !store.setOpenState" />
     </span>
-    <router-view v-if="store.getLinkPages"></router-view>
+    <!-- <Provider v-if="store.getLinkPages">
+      <n-layout
+        embedded
+        :native-scrollbar="false"
+        :class="store.headerFixed ? 'fixed' : null"
+      >
+        <n-back-top :visibility-height="2" @update:show="backTopChange" />
+        <Header :class="headerShow ? 'show' : null" />
+        <router-view></router-view>
+      </n-layout>
+    </Provider> -->
   </div>
 </template>
 <script setup>
@@ -56,6 +66,8 @@ import Box from '@/views/Box/index.vue'
 import MoreSet from '@/views/MoreSet/index.vue'
 import cursorInit from '@/utils/cursor.js'
 import config from '@/../package.json'
+//分割线 以下是今日热点
+// import Provider from '@/pages/DailyHot/components/Provider.vue'
 // 新春灯笼
 // import '@/utils/lantern.js'
 
