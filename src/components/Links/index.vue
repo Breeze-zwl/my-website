@@ -28,57 +28,60 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { Icon } from "@vicons/utils";
-import {
-  Link,
-  Blog,
-  CompactDisc,
-  Cloud,
-  Compass,
-  Book,
-  Fire,
-} from "@vicons/fa";
+import { ref } from 'vue'
+import { Icon } from '@vicons/utils'
+import { Link, Blog, CompactDisc, Cloud, Compass, Book, Fire } from '@vicons/fa'
+import { useRouter } from 'vue-router'
+import { mainStore } from '@/store'
 
+const store = mainStore()
+const router = useRouter()
+
+console.log('1010-10-01-01-0', router)
 // 网站链接数据
 // 建议不要超出6个，若需要超出请自行调整样式
 let linksData = [
   {
     icon: Blog,
-    name: "博客",
-    link: "https://blog.imsyy.top/",
+    name: '博客',
+    link: 'https://blog.imsyy.top/',
   },
   {
     icon: Cloud,
-    name: "网盘",
-    link: "https://pan.imsyy.top/",
+    name: '网盘',
+    link: 'https://pan.imsyy.top/',
   },
   {
     icon: CompactDisc,
-    name: "音乐",
-    link: "https://music.imsyy.top/",
+    name: '音乐',
+    link: 'https://music.imsyy.top/',
   },
   {
     icon: Compass,
-    name: "起始页",
-    link: "https://nav.imsyy.top/",
+    name: '起始页',
+    link: 'https://nav.imsyy.top/',
   },
   {
     icon: Book,
-    name: "网址集",
-    link: "https://web.imsyy.top/",
+    name: '网址集',
+    link: 'https://web.imsyy.top/',
   },
   {
     icon: Fire,
-    name: "今日热榜",
-    link: "https://hot.imsyy.top/",
+    name: '今日热榜',
+    link: 'https://hot.imsyy.top/',
   },
-];
+]
 
 // 链接跳转
 const jumpLink = (url) => {
-  window.open(url, "_blank");
-};
+  console.log(1111)
+  store.setLinkRouter(true)
+  router.push({
+    path: '/DailyHot',
+  })
+  // window.open(url, '_blank')
+}
 </script>
 
 <style lang="scss" scoped>

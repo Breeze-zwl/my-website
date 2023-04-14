@@ -1,7 +1,10 @@
 <template>
   <div :class="store.mobileOpenState ? 'right' : 'right hidden'">
     <!-- 移动端 Logo -->
-    <div class="logo text-hidden" @click="store.mobileFuncState = !store.mobileFuncState">
+    <div
+      class="logo text-hidden"
+      @click="store.mobileFuncState = !store.mobileFuncState"
+    >
       <span class="bg">{{ siteUrl[0] }}</span>
       <span class="sm">.{{ siteUrl[1] }}</span>
     </div>
@@ -13,16 +16,15 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from "vue";
-import { mainStore } from "@/store";
-import Func from "@/views/Func/index.vue";
-import Link from "@/components/Links/index.vue";
-const store = mainStore();
+import { reactive, ref, onMounted } from 'vue'
+import { mainStore } from '@/store'
+import Func from '@/views/Func/index.vue'
+import Link from '@/components/Links/index.vue'
+const store = mainStore()
 
 // 站点链接
-let siteUrl = import.meta.env.VITE_SITE_URL.split(".");
+let siteUrl = import.meta.env.VITE_SITE_URL.split('.')
 </script>
-
 
 <style lang="scss" scoped>
 .right {
@@ -31,7 +33,7 @@ let siteUrl = import.meta.env.VITE_SITE_URL.split(".");
   margin-left: 0.75rem;
   .logo {
     width: 80%;
-    font-family: "Pacifico-Regular";
+    font-family: 'Pacifico-Regular';
     font-size: 1.75rem;
     position: fixed;
     top: 6%;

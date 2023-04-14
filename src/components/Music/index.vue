@@ -42,8 +42,8 @@
       <div class="name" v-show="!volumeShow">
         <span>{{
           store.getPlayerData.name
-            ? store.getPlayerData.name + " - " + store.getPlayerData.artist
-            : "未播放音乐"
+            ? store.getPlayerData.name + ' - ' + store.getPlayerData.artist
+            : '未播放音乐'
         }}</span>
       </div>
       <div class="volume" v-show="volumeShow">
@@ -103,7 +103,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, watch, onMounted, nextTick } from "vue";
+import { ref, reactive, watch, onMounted, nextTick } from 'vue'
 import {
   GoStart,
   PlayOne,
@@ -113,52 +113,52 @@ import {
   VolumeMute,
   VolumeSmall,
   VolumeNotice,
-} from "@icon-park/vue-next";
-import Player from "@/components/Player/index.vue";
-import { mainStore } from "@/store";
-const store = mainStore();
+} from '@icon-park/vue-next'
+import Player from '@/components/Player/index.vue'
+import { mainStore } from '@/store'
+const store = mainStore()
 
 // 音量条数据
-let volumeShow = ref(false);
-let volumeNum = ref(store.musicVolume ? store.musicVolume : 0.7);
+let volumeShow = ref(false)
+let volumeNum = ref(store.musicVolume ? store.musicVolume : 0.7)
 
 // 播放列表数据
-let musicListShow = ref(false);
-const playerRef = ref(null);
-const musicDialog = ref(null);
+let musicListShow = ref(false)
+const playerRef = ref(null)
+const musicDialog = ref(null)
 const playerData = reactive({
   server: import.meta.env.VITE_SONG_SERVER,
   type: import.meta.env.VITE_SONG_TYPE,
   id: import.meta.env.VITE_SONG_ID,
-});
+})
 
 // 音乐播放暂停
 const changePlayState = () => {
-  playerRef.value.playToggle();
-};
+  playerRef.value.playToggle()
+}
 
 // 音乐上下曲
 const changeMusicIndex = (type) => {
-  playerRef.value.changeSong(type);
-};
+  playerRef.value.changeSong(type)
+}
 
 onMounted(() => {
   // 空格键事件
-  window.addEventListener("keydown", (e) => {
-    if (e.code == "Space") {
-      changePlayState();
+  window.addEventListener('keydown', (e) => {
+    if (e.code == 'Space') {
+      changePlayState()
     }
-  });
-});
+  })
+})
 
 // 监听音量变化
 watch(
   () => volumeNum.value,
   (value) => {
-    store.musicVolume = value;
-    playerRef.value.changeVolume(store.musicVolume);
+    store.musicVolume = value
+    playerRef.value.changeVolume(store.musicVolume)
   }
-);
+)
 </script>
 
 <style lang="scss" scoped>
@@ -293,8 +293,8 @@ watch(
     border-radius: 6px;
     z-index: 999;
     @media (max-width: 720px) {
-    left: calc(50% - 45%);
-    width: 90%;
+      left: calc(50% - 45%);
+      width: 90%;
     }
     .close {
       position: absolute;

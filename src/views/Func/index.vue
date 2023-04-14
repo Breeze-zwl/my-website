@@ -33,28 +33,28 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
-import { getCurrentTime } from "@/utils/getTime";
-import { mainStore } from "@/store";
-import Music from "@/components/Music/index.vue";
-import Hitokoto from "@/components/Hitokoto/index.vue";
-import Weather from "@/components/Weather/index.vue";
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { getCurrentTime } from '@/utils/getTime'
+import { mainStore } from '@/store'
+import Music from '@/components/Music/index.vue'
+import Hitokoto from '@/components/Hitokoto/index.vue'
+import Weather from '@/components/Weather/index.vue'
 
-const store = mainStore();
+const store = mainStore()
 
 // 当前时间
-let currentTime = ref({});
-let timeInterval = null;
+let currentTime = ref({})
+let timeInterval = null
 
 onMounted(() => {
   timeInterval = setInterval(() => {
-    currentTime.value = getCurrentTime();
-  }, 1000);
-});
+    currentTime.value = getCurrentTime()
+  }, 1000)
+})
 
 onBeforeUnmount(() => {
-  clearInterval(timeInterval);
-});
+  clearInterval(timeInterval)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -124,7 +124,7 @@ onBeforeUnmount(() => {
           margin-top: 10px;
           font-size: 3.25rem;
           letter-spacing: 2px;
-          font-family: "UnidreamLED";
+          font-family: 'UnidreamLED';
         }
       }
       .weather {

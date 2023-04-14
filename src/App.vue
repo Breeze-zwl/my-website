@@ -1,40 +1,45 @@
 <template>
   <div class="animate">
-    <Background />
-    <main>
-      <transition name="el-fade-in-linear">
-        <setting-two
-          class="setting"
-          theme="filled"
-          size="28"
-          fill="#ffffff60"
-          @click="store.setOpenState = true"
-        />
-      </transition>
-      <div class="container" v-show="!store.backgroundShow">
-        <section class="main" v-show="!store.setOpenState">
-          <MainLeft />
-          <MainRight v-show="!store.boxOpenState" />
-          <Box v-show="store.boxOpenState" />
-        </section>
-        <section
-          class="more"
-          v-show="store.setOpenState"
-          @click="store.setOpenState = false"
+    <span v-if="!store.getLinkPages">
+      <Background />
+      <main>
+        <transition name="el-fade-in-linear">
+          <setting-two
+            class="setting"
+            theme="filled"
+            size="28"
+            fill="#ffffff60"
+            @click="store.setOpenState = true"
+          />
+        </transition>
+        <div class="container" v-show="!store.backgroundShow">
+          <section class="main" v-show="!store.setOpenState">
+            <MainLeft />
+            <MainRight v-show="!store.boxOpenState" />
+            <Box v-show="store.boxOpenState" />
+          </section>
+          <section
+            class="more"
+            v-show="store.setOpenState"
+            @click="store.setOpenState = false"
+          >
+            <MoreSet />
+          </section>
+        </div>
+        <!-- 移动端菜单按钮 -->
+        <Icon
+          class="menu"
+          size="24"
+          @click="store.mobileOpenState = !store.mobileOpenState"
         >
-          <MoreSet />
-        </section>
-      </div>
-      <!-- 移动端菜单按钮 -->
-      <Icon
-        class="menu"
-        size="24"
-        @click="store.mobileOpenState = !store.mobileOpenState"
-      >
-        <component :is="store.mobileOpenState ? CloseSmall : HamburgerButton" />
-      </Icon>
-    </main>
-    <Footer v-show="!store.backgroundShow && !store.setOpenState" />
+          <component
+            :is="store.mobileOpenState ? CloseSmall : HamburgerButton"
+          />
+        </Icon>
+      </main>
+      <Footer v-show="!store.backgroundShow && !store.setOpenState" />
+    </span>
+    <router-view v-if="store.getLinkPages"></router-view>
   </div>
 </template>
 <script setup>
@@ -60,6 +65,7 @@ const store = mainStore()
 const getWidth = () => {
   store.setInnerWidth(window.innerWidth)
 }
+console.log('21312321', store.getLinkPages)
 
 onMounted(() => {
   // 自定义鼠标

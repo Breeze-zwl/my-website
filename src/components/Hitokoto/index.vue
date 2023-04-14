@@ -26,56 +26,56 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted, h } from "vue";
-import { MusicMenu, Error } from "@icon-park/vue-next";
-import { getHitokoto } from "@/api";
-import debounce from "@/utils/debounce.js";
-import { mainStore } from "@/store";
-const store = mainStore();
+import { reactive, ref, onMounted, h } from 'vue'
+import { MusicMenu, Error } from '@icon-park/vue-next'
+import { getHitokoto } from '@/api'
+import debounce from '@/utils/debounce.js'
+import { mainStore } from '@/store'
+const store = mainStore()
 
 // 开启音乐面板按钮显隐
-let openMusicShow = ref(false);
+let openMusicShow = ref(false)
 
 // 一言数据
 let hitokotoData = reactive({
-  text: "这里应该显示一句话",
-  from: "無名",
-});
+  text: '这里应该显示一句话',
+  from: '来自。。。',
+})
 
 // 打开音乐面板
-const openMusic = () => {};
+const openMusic = () => {}
 
 // 获取一言数据
 const getHitokotoData = () => {
   getHitokoto()
     .then((res) => {
-      hitokotoData.text = res.hitokoto;
-      hitokotoData.from = res.from;
+      hitokotoData.text = res.hitokoto
+      hitokotoData.from = res.from
     })
     .catch(() => {
       ElMessage({
-        message: "一言获取失败",
+        message: '一言获取失败',
         icon: h(Error, {
-          theme: "filled",
-          fill: "#efefef",
+          theme: 'filled',
+          fill: '#efefef',
         }),
-      });
-    });
-};
+      })
+    })
+}
 
 // 更新一言数据
 const updateHitokoto = () => {
-  hitokotoData.text = "新的一言正在赶来的路上";
-  hitokotoData.from = "来源加载中";
+  hitokotoData.text = '新的一言正在赶来的路上'
+  hitokotoData.from = '来源加载中'
   // 防抖
   debounce(() => {
-    getHitokotoData();
-  }, 500);
-};
+    getHitokotoData()
+  }, 500)
+}
 
 onMounted(() => {
-  getHitokotoData();
-});
+  getHitokotoData()
+})
 </script>
 
 <style lang="scss" scoped>

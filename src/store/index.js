@@ -20,6 +20,7 @@ export const mainStore = defineStore("main", {
             playerTitle: null, // 当前播放歌曲名
             playerArtist: null, // 当前播放歌手名
             playerLrc: "歌词加载中", // 当前播放歌词
+            linkpages: false //链接页面是否展示
         }
     },
     getters: {
@@ -37,6 +38,9 @@ export const mainStore = defineStore("main", {
         // 获取页面宽度
         getInnerWidth(state) {
             return state.innerWidth;
+        },
+        getLinkPages(state){
+          return state.linkpages
         }
     },
     actions: {
@@ -65,6 +69,10 @@ export const mainStore = defineStore("main", {
         setPlayerData(title, artist) {
             this.playerTitle = title;
             this.playerArtist = artist;
+        },
+        //使用router模式
+        setLinkRouter(value){
+          this.linkpages = value;
         }
     },
     persist: {
