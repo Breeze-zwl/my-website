@@ -13,7 +13,7 @@
       </el-collapse-item>
       <el-collapse-item title="其他设置" name="2">
         <div class="item">
-          <span class="text">建站日期显示</span>
+          <span class="text" style="color: #fff">建站日期显示</span>
           <el-switch
             v-model="siteStartShow"
             inline-prompt
@@ -23,10 +23,10 @@
         </div>
       </el-collapse-item>
       <el-collapse-item title="其他设置" name="3">
-        <div>没时间啦</div>
+        <div style="color: #fff">没时间啦</div>
       </el-collapse-item>
       <el-collapse-item title="其他设置" name="4">
-        <div>没时间啦</div>
+        <div style="color: #fff">没时间啦</div>
       </el-collapse-item>
     </el-collapse>
   </div>

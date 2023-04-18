@@ -9,12 +9,13 @@ import {
 } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import router from '@/router'
+import naive from 'naive-ui'
 
 const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 
-app.use(pinia).use(router);
+app.use(pinia).use(router).use(naive);
 app.mount('#app')
 
 // PWA

@@ -1,9 +1,4 @@
-/*
-作者: imsyy
-主页：https://www.imsyy.top/
-GitHub：https://github.com/imsyy/home
-版权所有，请勿删除
-*/
+
 
 @charset "utf-8";
 
@@ -27,7 +22,7 @@ p {
     -webkit-user-drag: none;
     user-select: none;
     text-decoration: none;
-    color: #fff;
+    // color: #fff;
     box-sizing: border-box;
 
     &:hover {
@@ -168,7 +163,7 @@ p {
     position: fixed;
     width: 18px;
     height: 18px;
-    background: #fff;
+    background: #000;
     border-radius: 25px;
     opacity: 0.25;
     z-index: 10086;

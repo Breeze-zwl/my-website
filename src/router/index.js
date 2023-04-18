@@ -8,7 +8,7 @@ const router = createRouter({
 
 // 路由守卫
 // router.beforeEach(() => {
-//   $loadingBar.start();
+  // $loadingBar.start();
 // });
 
 // router.afterEach(() => {

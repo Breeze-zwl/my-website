@@ -1,53 +1,60 @@
 const routes = [
-  // 首页
   {
-    path: "/DailyHot",
-    name: "DailyHot",
+    path: "/",
+    redirect: "/MainPages",
+  },
+  //引导页
+  {
+    path: "/MainPages",
+    name: "MainPages",
     meta: {
-      title: "首页",
+      title: "引导页",
     },
-    component: () => import("@/pages/DailyHot/Home.vue"),
+    component: () => import("@/views/MainPages.vue"),
+  },
+  // 热点首页
+  {
+    path: "/Provider/",
+    name: "Provider",
+    component: () => import("@/pages/DailyHot/Provider.vue"),
+    children:[
+      {
+        path: 'home',
+        component: () => import("@/pages/DailyHot/components/Home.vue"),
+      },
+      {
+        path: 'setting',
+        component: () => import("@/pages/DailyHot/components/Setting.vue"),
+      },
+    ]
   },
   // 新闻列表
+  {
+    path: "/HotList",
+    name: "HotList",
+    meta: {
+      title: "新闻列表",
+    },
+    component: () => import("@/pages/DailyHot/components/HotList.vue"),
+  },
+  // 热点详情页
   {
     path: "/list",
     name: "list",
     meta: {
-      title: "新闻列表",
+      title: "全局设置",
     },
-    component: () => import("@/pages/DailyHot/List.vue"),
+    component: () => import("@/pages/DailyHot/components/List.vue"),
   },
-  // 设置页
+  // 网址集页
   {
-    path: "/setting",
-    name: "setting",
+    path: "/MapUrlList",
+    name: "MapUrlList",
     meta: {
       title: "全局设置",
     },
-    component: () => import("@/views/DailyHot/Setting.vue"),
-  },
-  // 测试页面
-  // {
-  //   path: "/test",
-  //   name: "test",
-  //   meta: {
-  //     title: "test",
-  //   },
-  //   component: () => import("@/views/Test.vue"),
-  // },
-  // // 404
-  // {
-  //   path: "/404",
-  //   name: "404",
-  //   meta: {
-  //     title: "404",
-  //   },
-  //   component: () => import("@/views/404.vue"),
-  // },
-  // {
-  //   path: "/:pathMatch(.*)",
-  //   redirect: "/404",
-  // },
+    component: () => import("@/pages/OneNav/MapUrlList.vue")
+  }
 ];
 
 export default routes;

@@ -1,8 +1,10 @@
 <template>
-  <div :class="store.mobileOpenState ? 'left hidden' : 'left'">
-    <Message />
-    <SocialLinks />
-  </div>
+  <n-loading-bar-provider>
+    <div :class="store.mobileOpenState ? 'left hidden' : 'left'">
+      <Message />
+      <SocialLinks />
+    </div>
+  </n-loading-bar-provider>
 </template>
 
 <script setup>
@@ -15,6 +17,7 @@ const store = mainStore()
 <style lang="scss" scoped>
 .left {
   // flex: 1 0 0%;
+  color: #fff;
   width: 50%;
   margin-right: 10px;
   transform: translateY(20px);

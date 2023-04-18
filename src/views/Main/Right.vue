@@ -29,6 +29,7 @@ let siteUrl = import.meta.env.VITE_SITE_URL.split('.')
 <style lang="scss" scoped>
 .right {
   // flex: 1 0 0%;
+  color: #fff;
   width: 50%;
   margin-left: 0.75rem;
   .logo {

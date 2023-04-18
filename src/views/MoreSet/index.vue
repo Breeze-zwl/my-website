@@ -38,7 +38,7 @@
         </div>
         <el-card class="update">
           <template #header>
-            <div class="card-header">
+            <div class="card-header" style="color: #fff">
               <span>更新日志</span>
             </div>
           </template>
@@ -110,6 +110,7 @@ const jumpTo = (url) => {
 
 <style lang="scss" scoped>
 .set {
+  color: #fff;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -203,6 +204,7 @@ const jumpTo = (url) => {
               flex-direction: row;
               align-items: center;
               padding-bottom: 16px;
+              color: #fff;
 
               &:nth-last-of-type(1) {
                 padding: 0;
@@ -232,6 +234,7 @@ const jumpTo = (url) => {
         flex-direction: row;
         font-size: 18px;
         margin-bottom: 16px;
+        color: #fff;
 
         .i-icon {
           width: 28px;
