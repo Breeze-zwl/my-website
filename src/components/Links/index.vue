@@ -42,12 +42,12 @@ let linksData = [
   {
     icon: Blog,
     name: '博客',
-    link: 'https://blog.imsyy.top/',
+    link: 'https://github.com/W-xiaowei',
   },
   {
     icon: Cloud,
     name: '网盘',
-    link: 'https://pan.imsyy.top/',
+    link: '#',
   },
   {
     icon: CompactDisc,
@@ -57,7 +57,7 @@ let linksData = [
   {
     icon: Compass,
     name: '起始页',
-    link: 'https://nav.imsyy.top/',
+    link: '/Snavigation',
   },
   {
     icon: Book,

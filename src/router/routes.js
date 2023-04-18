@@ -54,6 +54,15 @@ const routes = [
       title: "全局设置",
     },
     component: () => import("@/pages/OneNav/MapUrlList.vue")
+  },
+    // 起始页
+  {
+    path: "/Snavigation",
+    name: "Snavigation",
+    meta: {
+      title: "全局设置",
+    },
+    component: () => import("@/pages/Snavigation/Snavigation.vue")
   }
 ];
 
