@@ -85,68 +85,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-// main {
-//   .setting {
-//     position: absolute;
-//     top: 1.5rem;
-//     right: 1.5rem;
-//   }
-//   .container {
-//     width: 100%;
-//     height: 100vh;
-//     margin: 0 auto;
-//     @media (max-width: 1200px) {
-//       padding: 0 2vw;
-//     }
-//     .main {
-//       width: 100%;
-//       height: 100%;
-//       padding: 0 0.75rem;
-//       display: flex;
-//       flex-direction: row;
-//       justify-content: center;
-//       align-items: center;
-//     }
-//     .more {
-//       position: fixed;
-//       top: 0;
-//       left: 0;
-//       width: 100%;
-//       height: 100%;
-//       background-color: #00000080;
-//       backdrop-filter: blur(20px);
-//       z-index: 2;
-//       animation: fade;
-//       -webkit-animation: fade 0.5s;
-//     }
-//   }
-//   .menu {
-//     position: fixed;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     top: 84%;
-//     left: calc(50% - 28px);
-//     width: 56px;
-//     height: 34px;
-//     background: rgb(0 0 0 / 20%);
-//     backdrop-filter: blur(10px);
-//     border-radius: 6px;
-//     transition: all 0.3s;
-//     animation: fade;
-//     -webkit-animation: fade 0.5s;
-//     &:active {
-//       transform: scale(0.95);
-//     }
-//     .i-icon {
-//       transform: translateY(2px);
-//     }
-//     @media (min-width: 720px) {
-//       display: none;
-//     }
-//   }
-// }
-
 // 加载动画层
 .animate {
   transform: scale(1);
