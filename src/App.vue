@@ -104,3 +104,8 @@ onBeforeUnmount(() => {
   }
 }
 </style>
+<style>
+.el-message {
+  color: #fff;
+}
+</style>

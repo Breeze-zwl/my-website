@@ -196,7 +196,7 @@ const menuOptionsSelect = (val) => {
   } else if (val === 'changeTheme') {
     store.setSiteTheme(store.siteTheme === 'light' ? 'dark' : 'light')
   } else if (val === 'setting') {
-    router.push('/setting')
+    router.push('/Provider/setting')
   }
 }
 // 初始化样式

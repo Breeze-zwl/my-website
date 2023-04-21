@@ -43,6 +43,7 @@ let linksData = [
     icon: Blog,
     name: '博客',
     link: 'https://github.com/W-xiaowei',
+    otherLink: true,
   },
   {
     icon: Cloud,
@@ -53,6 +54,7 @@ let linksData = [
     icon: CompactDisc,
     name: '音乐',
     link: 'https://music.imsyy.top/',
+    otherLink: true,
   },
   {
     icon: Compass,
@@ -73,9 +75,13 @@ let linksData = [
 
 // 链接跳转
 const jumpLink = (item) => {
-  router.push({
-    path: item.link,
-  })
+  if (item.otherLink) {
+    window.open(item.otherLink, '_blank')
+  } else {
+    router.push({
+      path: item.link,
+    })
+  }
 }
 </script>
 

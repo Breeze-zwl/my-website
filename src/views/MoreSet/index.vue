@@ -101,8 +101,7 @@ let upData = reactive({
     '我的头发，先救我的头发！！！',
   ],
 })
-
-// 跳转源代码仓库
+// // 跳转源代码仓库
 const jumpTo = (url) => {
   window.open(url)
 }
@@ -110,6 +109,8 @@ const jumpTo = (url) => {
 
 <style lang="scss" scoped>
 .set {
+  min-width: 800px;
+  overflow: auto;
   color: #fff;
   position: absolute;
   top: 50%;

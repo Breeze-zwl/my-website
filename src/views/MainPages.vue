@@ -104,6 +104,7 @@ main {
     transition: all 0.3s;
     animation: fade;
     -webkit-animation: fade 0.5s;
+    color: white;
     &:active {
       transform: scale(0.95);
     }
