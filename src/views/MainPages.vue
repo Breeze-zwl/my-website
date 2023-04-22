@@ -1,5 +1,5 @@
 <template>
-  <span v-if="!store.getLinkPages && !store.getUrlList">
+  <span>
     <Background />
     <main>
       <transition name="el-fade-in-linear">

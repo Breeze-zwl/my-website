@@ -15,12 +15,13 @@
         @click="store.setOpenState = false"
       />
     </transition>
-    <div class="logo text-hidden">
+    <!-- PC端logo -->
+    <div :class="[store.isMobile ? 'mobilelogo' : 'logo']">
       <span class="bg">{{ siteUrl[0] }}</span>
       <span class="sm">.{{ siteUrl[1] }}</span>
     </div>
-    <el-row :gutter="40">
-      <el-col :span="12" class="left">
+    <el-row :gutter="40" :class="store.isMobile ? 'wearpbox' : ''">
+      <el-col v-if="!store.isMobile" :span="12" class="left">
         <div class="version">
           <div class="num">v&nbsp;{{ config.version }}</div>
           <el-tooltip
@@ -54,7 +55,7 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="12" class="right">
+      <el-col :span="store.isMobile ? 40 : 12" class="right">
         <div class="title">
           <setting-two theme="filled" size="28" fill="#ffffff60" />
           <span class="name">全局设置</span>
@@ -109,7 +110,6 @@ const jumpTo = (url) => {
 
 <style lang="scss" scoped>
 .set {
-  min-width: 800px;
   overflow: auto;
   color: #fff;
   position: absolute;
@@ -136,6 +136,21 @@ const jumpTo = (url) => {
     .sm {
       margin-left: 6px;
       font-size: 2rem;
+    }
+  }
+  .mobilelogo {
+    width: 80%;
+    font-family: 'Pacifico-Regular';
+    font-size: 1.75rem;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s;
+    animation: fade;
+    -webkit-animation: fade 0.5s;
+    &:active {
+      transform: scale(0.95);
     }
   }
   .close {
@@ -244,6 +259,11 @@ const jumpTo = (url) => {
         }
       }
     }
+  }
+  .wearpbox {
+    height: auto;
+    margin-top: 60px;
+    display: block;
   }
 }
 </style>

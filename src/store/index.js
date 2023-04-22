@@ -20,6 +20,7 @@ export const mainStore = defineStore("main", {
             playerTitle: null, // 当前播放歌曲名
             playerArtist: null, // 当前播放歌手名
             playerLrc: "歌词加载中", // 当前播放歌词
+            isMobile: false, //是否是移动端
             //分割线，下面是今日热点
             // 系统主题
             siteTheme: "light",
@@ -131,6 +132,9 @@ export const mainStore = defineStore("main", {
             if (value >= 720) {
                 this.mobileOpenState = false;
                 this.mobileFuncState = false;
+                this.isMobile = false
+            } else {
+              this.isMobile = true;
             }
         },
         // 更改播放状态

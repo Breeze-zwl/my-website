@@ -76,7 +76,7 @@ let linksData = [
 // 链接跳转
 const jumpLink = (item) => {
   if (item.otherLink) {
-    window.open(item.otherLink, '_blank')
+    window.open(item.link, '_blank')
   } else {
     router.push({
       path: item.link,
