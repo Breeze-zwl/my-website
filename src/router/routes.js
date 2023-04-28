@@ -18,13 +18,20 @@ const routes = [
     name: "Provider",
     component: () => import("@/pages/DailyHot/Provider.vue"),
     children:[
+      //热点内容页面
       {
         path: 'home',
         component: () => import("@/pages/DailyHot/components/Home.vue"),
       },
+      //热点设置页
       {
         path: 'setting',
         component: () => import("@/pages/DailyHot/components/Setting.vue"),
+      },
+      // 热点详情页
+      {
+        path: 'list',
+        component: () => import("@/pages/DailyHot/components/List.vue"),
       },
     ]
   },
@@ -37,32 +44,23 @@ const routes = [
     },
     component: () => import("@/pages/DailyHot/components/HotList.vue"),
   },
-  // 热点详情页
-  {
-    path: "/list",
-    name: "list",
-    meta: {
-      title: "全局设置",
-    },
-    component: () => import("@/pages/DailyHot/components/List.vue"),
-  },
   // 网址集页
   {
     path: "/MapUrlList",
     name: "MapUrlList",
-    meta: {
-      title: "全局设置",
-    },
     component: () => import("@/pages/OneNav/MapUrlList.vue")
   },
     // 起始页
   {
     path: "/Snavigation",
     name: "Snavigation",
-    meta: {
-      title: "全局设置",
-    },
     component: () => import("@/pages/Snavigation/Snavigation.vue")
+  },
+   // 空间页
+   {
+    path: "/Zone",
+    name: "Zone",
+    component: () => import("@/pages/Zone/Zone.vue")
   }
 ];
 

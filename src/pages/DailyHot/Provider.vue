@@ -46,7 +46,6 @@ import {
 import { mainStore } from '@/store'
 import Header from '@/pages/DailyHot/components/Header.vue'
 import Footer from '@/pages/DailyHot/components/Footer.vue'
-import Home from '@/pages/DailyHot/components/Home.vue'
 import { onMounted } from 'vue'
 
 const store = mainStore()

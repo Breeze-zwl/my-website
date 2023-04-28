@@ -6,7 +6,7 @@
 <script setup>
 import { helloInit, checkDays } from '@/utils/getTime.js'
 import { mainStore } from '@/store'
-import cursorInit from '@/utils/cursor.js'
+// import cursorInit from '@/utils/cursor.js'
 import config from '@/../package.json'
 // 新春灯笼
 // import '@/utils/lantern.js'
@@ -20,7 +20,7 @@ const getWidth = () => {
 
 onMounted(() => {
   // 自定义鼠标
-  cursorInit()
+  // cursorInit()
   // 欢迎提示
   helloInit()
   // 默哀模式

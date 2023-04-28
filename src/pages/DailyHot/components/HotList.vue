@@ -184,6 +184,7 @@ const getNewData = () => {
 
 // 链接跳转
 const jumpLink = (data) => {
+  console.log(data)
   if (!data.url || !data.mobileUrl) return $message.error('链接不存在')
   const url = window.innerWidth > 680 ? data.url : data.mobileUrl
   if (store.linkOpenType === 'open') {
@@ -195,9 +196,10 @@ const jumpLink = (data) => {
 
 // 前往全部列表
 const toList = () => {
+  console.log(1111)
   if (props.hotType) {
     router.push({
-      path: '/list',
+      path: '/Provider/list',
       query: {
         type: props.hotType,
       },
