@@ -4,8 +4,8 @@
     <n-layout embedded :native-scrollbar="false" class="fixed">
       <n-back-top :visibility-height="2" @update:show="backTopChange" />
       <div class="zone-box">
-        <div class="zone-linshi">内容建设中。。。</div>
         <Header></Header>
+        <div class="zone-linshi">内容建设中。。。</div>
         <!-- <timeline></timeline> -->
       </div>
     </n-layout>

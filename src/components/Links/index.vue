@@ -110,6 +110,7 @@ const jumpLink = (item) => {
       justify-content: center;
       animation: fade;
       -webkit-animation: fade 0.5s;
+      cursor: pointer;
 
       &:hover {
         transform: scale(1.02);

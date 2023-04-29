@@ -145,6 +145,7 @@ watch(
     max-width: 460px;
     animation: fade;
     -webkit-animation: fade 0.5s;
+    cursor: pointer;
 
     .content {
       display: flex;

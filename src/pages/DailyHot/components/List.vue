@@ -167,8 +167,9 @@ const jumpLink = (data) => {
 
 // 切换类别
 const changeType = (type) => {
+  console.log(type)
   router.push({
-    path: '/list',
+    path: '/Provider/list',
     query: {
       type,
       page: 1,
@@ -191,7 +192,7 @@ watch(
   () => pageNumber.value,
   (val) => {
     router.push({
-      path: '/list',
+      path: '/Provider/list',
       query: {
         type: listType.value,
         page: val,
@@ -205,7 +206,7 @@ watch(
 watch(
   () => router.currentRoute.value,
   (val) => {
-    if (val.name === 'list') {
+    if (val.path === '/Provider/list') {
       listType.value = val.query.type
       pageNumber.value = Number(val.query.page)
       getHotListsData(listType.value)

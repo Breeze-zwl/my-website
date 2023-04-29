@@ -1,16 +1,17 @@
 <template>
   <div class="animate">
+    <RoteButton></RoteButton>
     <router-view></router-view>
   </div>
 </template>
 <script setup>
 import { helloInit, checkDays } from '@/utils/getTime.js'
 import { mainStore } from '@/store'
-// import cursorInit from '@/utils/cursor.js'
 import config from '@/../package.json'
+import RoteButton from '@/components/RoteButton/RoteButton.vue'
 // 新春灯笼
 // import '@/utils/lantern.js'
-
+const showAnimate = ref(false)
 const store = mainStore()
 
 // 页面宽度
@@ -19,6 +20,7 @@ const getWidth = () => {
 }
 
 onMounted(() => {
+  play()
   // 自定义鼠标
   // cursorInit()
   // 欢迎提示
@@ -68,6 +70,12 @@ onMounted(() => {
   let content = `\n\n版本: ${config.version}\n主页: ${config.home}\nGithub: ${config.github}`
   console.info(`%c${title1}  %c${content}`, styleTitle1, styleTitle2)
 })
+const play = () => {
+  showAnimate.value = true
+}
+const reset = () => {
+  showAnimate.value = false
+}
 
 // 监听宽度变化
 watch(

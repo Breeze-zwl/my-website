@@ -196,7 +196,7 @@ const jumpLink = (data) => {
 
 // 前往全部列表
 const toList = () => {
-  console.log(1111)
+  console.log(props.hotType)
   if (props.hotType) {
     router.push({
       path: '/Provider/list',
