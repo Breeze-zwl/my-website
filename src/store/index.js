@@ -1,3 +1,4 @@
+import { Log } from "@icon-park/vue-next";
 import {
     defineStore
 } from "pinia";
@@ -128,6 +129,7 @@ export const mainStore = defineStore("main", {
     actions: {
         // 更改当前页面宽度
         setInnerWidth(value) {
+          console.log(111);
             this.innerWidth = value;
             if (value >= 720) {
                 this.mobileOpenState = false;

@@ -5,8 +5,7 @@
       <n-back-top :visibility-height="2" @update:show="backTopChange" />
       <div class="zone-box">
         <Header></Header>
-        <div class="zone-linshi">内容建设中。。。</div>
-        <!-- <timeline></timeline> -->
+        <router-view></router-view>
       </div>
     </n-layout>
   </n-loading-bar-provider>
@@ -14,7 +13,6 @@
 
 <script setup>
 import { useLoadingBar } from 'naive-ui'
-import timeline from '@/pages/Zone/components/timeline.vue'
 import Header from '@/pages/Zone/components/Header.vue'
 
 // 顶栏显隐
@@ -95,7 +93,7 @@ setTimeout(() => {
   .zone-box {
     background-color: #fff;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background: url('/images/background11.webp') no-repeat;
     background-position: left top;
     background-size: 100% 100%;

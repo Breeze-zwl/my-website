@@ -41,14 +41,14 @@ const router = useRouter()
 let linksData = [
   {
     icon: Blog,
-    name: '博客',
+    name: 'Github',
     link: 'https://github.com/W-xiaowei',
     otherLink: true,
   },
   {
     icon: Cloud,
     name: '空间',
-    link: '/Zone',
+    link: '/Zone/work/tal',
   },
   {
     icon: CompactDisc,

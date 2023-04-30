@@ -58,9 +58,48 @@ const routes = [
   },
    // 空间页
    {
-    path: "/Zone",
+    path: "/Zone/",
     name: "Zone",
-    component: () => import("@/pages/Zone/Zone.vue")
+    component: () => import("@/pages/Zone/Zone.vue"),
+    children:[
+       //空间热点页面
+       {
+        path: 'work/',
+        component: () => import("@/pages/Zone/components/work.vue"),
+        children:[
+          //好未来页面
+          {
+            path: 'tal',
+            component: () => import("@/pages/Zone/components/workcomponents/tal.vue"),
+          },
+          //作业帮页面
+          {
+            path: 'zyb',
+            component: () => import("@/pages/Zone/components/workcomponents/zyb.vue"),
+          },
+          //国美页面
+          {
+            path: 'gome',
+            component: () => import("@/pages/Zone/components/workcomponents/gome.vue"),
+          }
+        ]
+      },
+      //空间生活页面
+      {
+        path: 'life',
+        component: () => import("@/pages/Zone/components/life.vue"),
+      },
+      //空间Like页面
+      {
+        path: 'Like',
+        component: () => import("@/pages/Zone/components/Like.vue"),
+      },
+       //空间She页面
+       {
+        path: 'She',
+        component: () => import("@/pages/Zone/components/She.vue"),
+      },
+    ]
   }
 ];
 
