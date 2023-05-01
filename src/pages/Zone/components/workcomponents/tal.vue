@@ -29,13 +29,15 @@
         </div>
         <div class="post-container">
           <div class="entry-content">
-            确实讨厌去写所谓的年终总结，在公司已经被动的想领导上交一个总结，自己就懒得去总结，不然，我觉得脑子里应该会编写出八九不离十的内容，所以正经八儿的事情略了，瞎说一下。
-            年初的人事调动是个人最不能接受的事情，但不接受也得接受，老板一句“这是命令...
+            首先：为什么在18年好未来开始，之前因为不用苹果手机，也不用百度网盘，也没用平时记录的习惯，最近网站大改版，找一些可写的内容，只能在百度网盘自动备份
+            和朋友圈扒一些图，能想到哪里就记录到哪里吧...
           </div>
           <div class="post-footer">
-            <a class="gaz-btn primary" href="">READ MORE</a>
+            <span class="gaz-btn primary" @click="handleReadMore" href=""
+              >READ MORE</span
+            >
             <span class="total-comments-on-post pull-right"
-              ><a href="" class="looknumb">31 Others</a></span
+              ><span href="" class="looknumb">Others</span></span
             >
           </div>
         </div>
@@ -43,7 +45,16 @@
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+console.log(router)
+const handleReadMore = () => {
+  router.push({
+    path: '/Zone/work/talTimeLine',
+  })
+}
+</script>
 <style lang="scss" scoped>
 .worklogo {
   width: 40%;
@@ -245,6 +256,7 @@
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   display: inline-block;
+  cursor: pointer;
 }
 .gaz-btn.primary {
   background: #bebbaa;

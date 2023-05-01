@@ -18,9 +18,9 @@
                   <li>
                     <a @click.stop="handlezonesort('work/tal')">工作经历</a>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a @click.stop="handlezonesort('life')">生活经历</a>
-                  </li>
+                  </li> -->
                   <li>
                     <a @click.stop="handlezonesort('Like')">兴趣爱好</a>
                   </li>

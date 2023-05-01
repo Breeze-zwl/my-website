@@ -81,7 +81,13 @@ const routes = [
           {
             path: 'gome',
             component: () => import("@/pages/Zone/components/workcomponents/gome.vue"),
-          }
+          },
+          //好未来详情页面
+          {
+            path: 'talTimeLine',
+            name:'talTimeLine',
+            component: () => import("@/pages/Zone/components/workcomponents/tal/talTimeLine.vue"),
+          },
         ]
       },
       //空间生活页面
