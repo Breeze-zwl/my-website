@@ -17,7 +17,7 @@
                   >故事的开始</a
                 >
               </div>
-              <div class="review-item-creator"><b>开始日期：</b>2018-5-3</div>
+              <div class="review-item-creator"><b>开始日期：</b>2020-10-11</div>
               <span class="review-item-info"
                 ><b>个人感悟：</b>当你在凝望深渊的时候，深渊也在凝望你</span
               >
@@ -29,13 +29,51 @@
         </div>
         <div class="post-container">
           <div class="entry-content">
-            确实讨厌去写所谓的年终总结，在公司已经被动的想领导上交一个总结，自己就懒得去总结，不然，我觉得脑子里应该会编写出八九不离十的内容，所以正经八儿的事情略了，瞎说一下。
-            年初的人事调动是个人最不能接受的事情，但不接受也得接受，老板一句“这是命令...
+            可以说是人生的转折点了，也可以说是我人生最高光的时刻，从工作到情感，在这里发生了很多事，在这里走了以后发生的事颠覆了我前20多年的很多观念，让我认清了很多人很多事，
+            有的时候我在想，这三年的付出真的值吗？也许吧...
           </div>
           <div class="post-footer">
-            <a class="gaz-btn primary" href="">READ MORE</a>
+            <span class="gaz-btn primary" @click="handleTozyb">READ MORE</span>
             <span class="total-comments-on-post pull-right"
-              ><a href="" class="looknumb">31 Others</a></span
+              ><span class="looknumb">Others</span></span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="post post-layout-list">
+      <div class="postnormal review">
+        <div class="post-container review-item">
+          <div class="row review-item-wrapper">
+            <div class="col-sm-3">
+              <div
+                class="review-item-img"
+                style="background-image: url(/zyb/zybgp.jpeg)"
+              ></div>
+            </div>
+            <div class="col-sm-9 flex-xs-middle">
+              <div class="review-item-title">
+                <a href="detail.html" rel="bookmark" class="lookcolo">相册</a>
+              </div>
+              <div class="review-item-creator"><b>开始日期：</b>2010-10-11</div>
+              <span class="review-item-info"
+                ><b>个人感悟：</b
+                >祝愿所有善良的人，都会被这个世界温柔以待，反之...</span
+              >
+            </div>
+          </div>
+          <div class="review-bg-wrapper">
+            <div class="bg-blur"></div>
+          </div>
+        </div>
+        <div class="post-container">
+          <div class="entry-content">一些照片，展现形式仍然在构思...</div>
+          <div class="post-footer">
+            <span class="gaz-btn primary" @click="handleToPhotos"
+              >READ MORE</span
+            >
+            <span class="total-comments-on-post pull-right"
+              ><span class="looknumb">Others</span></span
             >
           </div>
         </div>
@@ -43,7 +81,19 @@
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+const handleTozyb = () => {
+  router.push({
+    path: '/Zone/work/zybTimeLine',
+  })
+}
+const handleToPhotos = () => {
+  ElMessage('构思中')
+}
+</script>
 <style lang="scss" scoped>
 .worklogo {
   width: 40%;
@@ -78,6 +128,7 @@
 .post-layout-list {
   max-width: 800px;
   margin: auto;
+  margin-bottom: 60px;
 }
 .postnormal.review {
   border-radius: 0 0 6px 6px;
@@ -245,6 +296,7 @@
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   display: inline-block;
+  cursor: pointer;
 }
 .gaz-btn.primary {
   background: #bebbaa;

@@ -88,6 +88,18 @@ const routes = [
             name:'talTimeLine',
             component: () => import("@/pages/Zone/components/workcomponents/tal/talTimeLine.vue"),
           },
+          //作业帮详情页面
+          {
+            path: 'zybTimeLine',
+            name:'zybTimeLine',
+            component: () => import("@/pages/Zone/components/workcomponents/zyb/zybTimeline.vue"),
+          },
+          //国美详情页面
+          {
+            path: 'gomeTimeLine',
+            name:'gomeTimeLine',
+            component: () => import("@/pages/Zone/components/workcomponents/gome/gomeTimeLine.vue"),
+          }
         ]
       },
       //空间生活页面

@@ -4,7 +4,9 @@
     <n-layout embedded :native-scrollbar="false" class="fixed">
       <n-back-top :visibility-height="2" @update:show="backTopChange" />
       <div class="zone-box">
-        <Header></Header>
+        <div style="height: 180px">
+          <Header v-if="isShowHeader"></Header>
+        </div>
         <router-view></router-view>
       </div>
     </n-layout>
@@ -14,7 +16,20 @@
 <script setup>
 import { useLoadingBar } from 'naive-ui'
 import Header from '@/pages/Zone/components/Header.vue'
+const isShowHeader = ref(true)
 
+//监听页面滚动
+window.addEventListener(
+  'scroll',
+  (e) => {
+    if (e.target.scrollTop > 50) {
+      isShowHeader.value = false
+    } else {
+      isShowHeader.value = true
+    }
+  },
+  true
+)
 // 顶栏显隐
 const headerShow = ref(false)
 

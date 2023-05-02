@@ -13,11 +13,9 @@
             </div>
             <div class="col-sm-9 flex-xs-middle">
               <div class="review-item-title">
-                <a href="detail.html" rel="bookmark" class="lookcolo"
-                  >故事的开始</a
-                >
+                <span rel="bookmark" class="lookcolo">故事的开始</span>
               </div>
-              <div class="review-item-creator"><b>开始日期：</b>2018-5-3</div>
+              <div class="review-item-creator"><b>开始日期：</b>2021-10-11</div>
               <span class="review-item-info"
                 ><b>个人感悟：</b>逝者如斯，不舍昼夜</span
               >
@@ -29,13 +27,52 @@
         </div>
         <div class="post-container">
           <div class="entry-content">
-            确实讨厌去写所谓的年终总结，在公司已经被动的想领导上交一个总结，自己就懒得去总结，不然，我觉得脑子里应该会编写出八九不离十的内容，所以正经八儿的事情略了，瞎说一下。
-            年初的人事调动是个人最不能接受的事情，但不接受也得接受，老板一句“这是命令...
+            这段时间很短，也是来到这里我才开始知道学习的重要性，自驱性开始增强，但是因为一些事情我不能静心，还没能达到我想要的水平就被迫离职了，原因嘛！很多，
+            主要原因，个人感情问题，其次工资问题，上了热搜的，现在想想当时的选择是对的，但后来却走上了一条岔路...
           </div>
           <div class="post-footer">
-            <a class="gaz-btn primary" href="">READ MORE</a>
+            <span class="gaz-btn primary" @click="handleTogome">READ MORE</span>
             <span class="total-comments-on-post pull-right"
-              ><a href="" class="looknumb">31 Others</a></span
+              ><span class="looknumb">Others</span></span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="post post-layout-list">
+      <div class="postnormal review">
+        <div class="post-container review-item">
+          <div class="row review-item-wrapper">
+            <div class="col-sm-3">
+              <div
+                class="review-item-img"
+                style="background-image: url(/gome/gomegp.jpeg)"
+              ></div>
+            </div>
+            <div class="col-sm-9 flex-xs-middle">
+              <div class="review-item-title">
+                <a href="detail.html" rel="bookmark" class="lookcolo">相册</a>
+              </div>
+              <div class="review-item-creator"><b>开始日期：</b>2021-10-11</div>
+              <span class="review-item-info"
+                ><b>个人感悟：</b>逝者如斯，不舍昼夜</span
+              >
+            </div>
+          </div>
+          <div class="review-bg-wrapper">
+            <div class="bg-blur"></div>
+          </div>
+        </div>
+        <div class="post-container">
+          <div class="entry-content" @click="handleToPhotos">
+            一些照片，展现形式构思中
+          </div>
+          <div class="post-footer">
+            <span class="gaz-btn primary" @click="handleToPhotos"
+              >READ MORE</span
+            >
+            <span class="total-comments-on-post pull-right"
+              ><span class="looknumb">Others</span></span
             >
           </div>
         </div>
@@ -43,7 +80,19 @@
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+const handleTogome = () => {
+  router.push({
+    path: '/Zone/work/gomeTimeLine',
+  })
+}
+const handleToPhotos = () => {
+  ElMessage('构思中')
+}
+</script>
 <style lang="scss" scoped>
 .worklogo {
   width: 40%;
@@ -78,6 +127,7 @@
 .post-layout-list {
   max-width: 800px;
   margin: auto;
+  margin-bottom: 60px;
 }
 .postnormal.review {
   border-radius: 0 0 6px 6px;
@@ -245,6 +295,7 @@
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   display: inline-block;
+  cursor: pointer;
 }
 .gaz-btn.primary {
   background: #bebbaa;

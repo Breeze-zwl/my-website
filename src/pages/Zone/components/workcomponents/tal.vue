@@ -43,16 +43,57 @@
         </div>
       </div>
     </div>
+    <div class="post post-layout-list">
+      <div class="postnormal review">
+        <div class="post-container review-item">
+          <div class="row review-item-wrapper">
+            <div class="col-sm-3">
+              <div
+                class="review-item-img"
+                style="background-image: url(/Tal/gp.jpeg)"
+              ></div>
+            </div>
+            <div class="col-sm-9 flex-xs-middle">
+              <div class="review-item-title">
+                <a href="detail.html" rel="bookmark" class="lookcolo">相册</a>
+              </div>
+              <div class="review-item-creator"><b>开始日期：</b>2018-5-3</div>
+              <span class="review-item-info"
+                ><b>个人感悟：</b>一转眼就不是少年喽</span
+              >
+            </div>
+          </div>
+          <div class="review-bg-wrapper">
+            <div class="bg-blur"></div>
+          </div>
+        </div>
+        <div class="post-container">
+          <div class="entry-content">
+            由于一个一个的描述太啰嗦，准备搞一个相册，把照片放在这里面，具体展现形式还没想好
+          </div>
+          <div class="post-footer">
+            <span class="gaz-btn primary" @click="handleToPhotos"
+              >READ MORE</span
+            >
+            <span class="total-comments-on-post pull-right"
+              ><span class="looknumb">Others</span></span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
 const router = useRouter()
-console.log(router)
 const handleReadMore = () => {
   router.push({
     path: '/Zone/work/talTimeLine',
   })
+}
+const handleToPhotos = () => {
+  ElMessage('构思中')
 }
 </script>
 <style lang="scss" scoped>
@@ -89,6 +130,7 @@ const handleReadMore = () => {
 .post-layout-list {
   max-width: 800px;
   margin: auto;
+  margin-bottom: 60px;
 }
 .postnormal.review {
   border-radius: 0 0 6px 6px;
