@@ -49,11 +49,7 @@
           </div>
         </div>
       </div>
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
     </div>
-    <div class="mumaswiper"></div>
   </div>
 </template>
 <script setup>
