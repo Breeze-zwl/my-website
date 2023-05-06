@@ -3,7 +3,9 @@
     <div class="life-tips">
       2023-3-3，发生了一些事情，网站大改版，删除了很多内容，留下了一部分，展现形式也有所改变，目前先这个样子，
     </div>
-    <carousel v-if="!store.isMobile"></carousel>
+    <div v-if="!store.isMobile">
+      <carousel></carousel>
+    </div>
     <div v-if="store.isMobile">
       <swiper
         :effect="'cards'"
@@ -66,8 +68,10 @@ const modules = ref([EffectCards])
 .life-box {
   color: black;
   height: calc(100vh - 180px);
+  height: 100vh;
   color: white;
   text-align: center;
+  // overflow: hidden;
 }
 .mobildH {
   height: 100vh;

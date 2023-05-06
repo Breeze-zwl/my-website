@@ -55,7 +55,8 @@
 <script setup>
 import './swiper-bundle.min.js'
 import { onMounted } from 'vue'
-const slideW = ~~(document.body.offsetWidth * 0.26) + 10 //一张图300px, 每面四张角度22.5（PI/8），中心角度PI/16
+// const slideW = ~~(document.body.offsetWidth * 0.26) + 10
+const slideW = 300 //一张图300px, 每面四张角度22.5（PI/8），中心角度PI/16
 const radius = (slideW * 0.5) / Math.sin(Math.PI / 16) //半径。圆心并不是视点中心，视点在1200px
 onMounted(() => {
   const carouselSwiper = new Swiper('#carousel .swiper', {
@@ -63,11 +64,14 @@ onMounted(() => {
     slidesPerView: 'auto',
     centeredSlides: false,
     loop: true,
-    loopedSlides: 4,
+    loopedSlides: 6,
     grabCursor: true,
+    speed: 5000,
     autoplay: {
-      delay: 1000,
+      delay: 0,
       disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+      reverseDirection: false,
     },
     // freeMode: true,
     on: {
@@ -112,4 +116,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 @import './swiper-bundle.min.css';
 @import './carousel.css';
+::v-deep .swiper-wrapper {
+  transition-timing-function: linear;
+}
 </style>

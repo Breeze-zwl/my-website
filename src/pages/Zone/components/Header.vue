@@ -199,6 +199,7 @@ const handlezonesort = (val) => {
 .main-navigation li {
   color: #fff;
   position: relative;
+  cursor: pointer;
 }
 
 .main-navigation a {
