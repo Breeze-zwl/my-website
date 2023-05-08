@@ -1,3 +1,4 @@
+import { Log } from "@icon-park/vue-next";
 import {
     defineStore
 } from "pinia";
@@ -20,7 +21,7 @@ export const mainStore = defineStore("main", {
             playerTitle: null, // 当前播放歌曲名
             playerArtist: null, // 当前播放歌手名
             playerLrc: "歌词加载中", // 当前播放歌词
-            linkpages: false, //链接页面是否展示
+            isMobile: false, //是否是移动端
             //分割线，下面是今日热点
             // 系统主题
             siteTheme: "light",
@@ -31,6 +32,7 @@ export const mainStore = defineStore("main", {
                 value: "bilibili",
                 order: 0,
                 show: true,
+                icon:'./image/logo/36kr.png'
               },
               {
                 label: "微博",
@@ -122,18 +124,19 @@ export const mainStore = defineStore("main", {
         // 获取页面宽度
         getInnerWidth(state) {
             return state.innerWidth;
-        },
-        getLinkPages(state){
-          return state.linkpages
         }
     },
     actions: {
         // 更改当前页面宽度
         setInnerWidth(value) {
+          console.log(111);
             this.innerWidth = value;
             if (value >= 720) {
                 this.mobileOpenState = false;
                 this.mobileFuncState = false;
+                this.isMobile = false
+            } else {
+              this.isMobile = true;
             }
         },
         // 更改播放状态
@@ -153,10 +156,6 @@ export const mainStore = defineStore("main", {
         setPlayerData(title, artist) {
             this.playerTitle = title;
             this.playerArtist = artist;
-        },
-        //使用router模式
-        setLinkRouter(value){
-          this.linkpages = value;
         },
         //分割线  下面是今日热点
         // 更改系统主题

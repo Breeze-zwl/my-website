@@ -1,0 +1,38 @@
+
+#carousel {
+	position: relative;
+	width: 1200px;
+	margin: 0 auto
+}
+
+#carousel .swiper {
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+#carousel  .swiper-slide {
+	width: 300px;
+	background: #fff;
+	box-shadow: 0 8px 20px #ddd;
+}
+#carousel  .swiper-slide img{
+	display:block;
+	width: 100%;
+  height: 220px;
+}
+#carousel  .swiper-slide p {
+	line-height: 58px;
+	padding-top: 0;
+	text-align: center;
+	color: #636363;
+	font-size: 0.8em;
+	margin: 0;
+}
+
+
+#carousel .swiper-button-next:hover {
+	background-position: 0 -139px;
+	background-size: 100%
+}
+#carousel .swiper-button-prev::after,#carousel .swiper-button-next::after{
+	content: '';
+} 

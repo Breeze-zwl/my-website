@@ -7,6 +7,7 @@ import fetchJsonp from "fetch-jsonp";
 
 // 获取音乐播放列表
 export const getPlayerList = async (server, type, id) => {
+  return []
   const res = await fetch(
     `${import.meta.env.VITE_SONG_API}?server=${server}&type=${type}&id=${id}`
   );
@@ -76,4 +77,18 @@ export const getWeather = async (key, city) => {
 export const getSocialLinks = async () => {
   const res = await fetch("/socialLinks.json");
   return await res.json();
+};
+// 获取热榜数据
+import axios from "@/api/request";
+/**
+ * 获取热榜分类数据
+ * @param {string} type 热榜分类名称
+ * @param {boolean} isNew 是否拉取最新数据
+ * @returns
+ */
+export const getHotLists = (type, isNew) => {
+  return axios({
+    method: "GET",
+    url: `/${type}${isNew ? "/new" : "/"}`,
+  });
 };

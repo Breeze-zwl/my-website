@@ -40,6 +40,7 @@ let fullYear = new Date().getFullYear()
 
 <style lang="scss" scoped>
 footer {
+  color: #fff;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -52,6 +53,9 @@ footer {
   z-index: 0;
   animation: fade;
   -webkit-animation: fade 0.5s;
+  a {
+    color: #fff;
+  }
   @media (max-width: 720px) {
     font-size: 0.85rem;
   }

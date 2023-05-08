@@ -15,12 +15,13 @@
         @click="store.setOpenState = false"
       />
     </transition>
-    <div class="logo text-hidden">
+    <!-- PC端logo -->
+    <div :class="[store.isMobile ? 'mobilelogo' : 'logo']">
       <span class="bg">{{ siteUrl[0] }}</span>
       <span class="sm">.{{ siteUrl[1] }}</span>
     </div>
-    <el-row :gutter="40">
-      <el-col :span="12" class="left">
+    <el-row :gutter="40" :class="store.isMobile ? 'wearpbox' : ''">
+      <el-col v-if="!store.isMobile" :span="12" class="left">
         <div class="version">
           <div class="num">v&nbsp;{{ config.version }}</div>
           <el-tooltip
@@ -38,7 +39,7 @@
         </div>
         <el-card class="update">
           <template #header>
-            <div class="card-header">
+            <div class="card-header" style="color: #fff">
               <span>更新日志</span>
             </div>
           </template>
@@ -54,7 +55,7 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="12" class="right">
+      <el-col :span="store.isMobile ? 40 : 12" class="right">
         <div class="title">
           <setting-two theme="filled" size="28" fill="#ffffff60" />
           <span class="name">全局设置</span>
@@ -101,8 +102,7 @@ let upData = reactive({
     '我的头发，先救我的头发！！！',
   ],
 })
-
-// 跳转源代码仓库
+// // 跳转源代码仓库
 const jumpTo = (url) => {
   window.open(url)
 }
@@ -110,6 +110,8 @@ const jumpTo = (url) => {
 
 <style lang="scss" scoped>
 .set {
+  overflow: auto;
+  color: #fff;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -134,6 +136,21 @@ const jumpTo = (url) => {
     .sm {
       margin-left: 6px;
       font-size: 2rem;
+    }
+  }
+  .mobilelogo {
+    width: 80%;
+    font-family: 'Pacifico-Regular';
+    font-size: 1.75rem;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s;
+    animation: fade;
+    -webkit-animation: fade 0.5s;
+    &:active {
+      transform: scale(0.95);
     }
   }
   .close {
@@ -203,6 +220,7 @@ const jumpTo = (url) => {
               flex-direction: row;
               align-items: center;
               padding-bottom: 16px;
+              color: #fff;
 
               &:nth-last-of-type(1) {
                 padding: 0;
@@ -232,6 +250,7 @@ const jumpTo = (url) => {
         flex-direction: row;
         font-size: 18px;
         margin-bottom: 16px;
+        color: #fff;
 
         .i-icon {
           width: 28px;
@@ -240,6 +259,11 @@ const jumpTo = (url) => {
         }
       }
     }
+  }
+  .wearpbox {
+    height: auto;
+    margin-top: 60px;
+    display: block;
   }
 }
 </style>

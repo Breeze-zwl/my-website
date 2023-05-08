@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
 import routes from "@/router/routes";
 
 const router = createRouter({
@@ -8,7 +8,7 @@ const router = createRouter({
 
 // 路由守卫
 // router.beforeEach(() => {
-//   $loadingBar.start();
+  // $loadingBar.start();
 // });
 
 // router.afterEach(() => {

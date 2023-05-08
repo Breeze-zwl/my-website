@@ -11,8 +11,8 @@
 }, {
     "name": "Email",
     "icon": "/images/icon/email.png",
-    "tip": "405843463@qq.com",
-    "url": "#"
+    "tip": "邮件",
+    "url": "mailto:405843463@qq.com"
 }, {
     "name": "WeChat",
     "icon": "/images/icon/wechat.png",

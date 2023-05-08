@@ -2,7 +2,7 @@
   <!-- 基本信息 -->
   <div class="message">
     <!-- Logo -->
-    <h1>
+    <h1 class="messageh1">
       我是 <span id="typed">{{ obj.output }}</span>
     </h1>
     <h1>的前端开发工程师</h1>
@@ -94,6 +94,9 @@ watch(
 
 <style lang="scss" scoped>
 .message {
+  .messageh1 {
+    height: 2.5rem;
+  }
   .logo {
     display: flex;
     flex-direction: row;
@@ -142,6 +145,7 @@ watch(
     max-width: 460px;
     animation: fade;
     -webkit-animation: fade 0.5s;
+    cursor: pointer;
 
     .content {
       display: flex;

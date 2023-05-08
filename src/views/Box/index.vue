@@ -42,6 +42,7 @@ let closeShow = ref(false)
 
 <style lang="scss" scoped>
 .box {
+  color: #fff;
   flex: 1 0 0%;
   margin-left: 0.75rem;
   height: 80%;

@@ -11,7 +11,7 @@
         :span="8"
         v-for="(item, index) in linksData"
         :key="item"
-        @click="jumpLink(item.link)"
+        @click="jumpLink(item)"
       >
         <div
           class="item cards"
@@ -28,7 +28,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { Icon } from '@vicons/utils'
 import { Link, Blog, CompactDisc, Cloud, Compass, Book, Fire } from '@vicons/fa'
 import { useRouter } from 'vue-router'
@@ -37,45 +36,52 @@ import { mainStore } from '@/store'
 const store = mainStore()
 const router = useRouter()
 
-console.log('1010-10-01-01-0', router)
 // 网站链接数据
 // 建议不要超出6个，若需要超出请自行调整样式
 let linksData = [
   {
     icon: Blog,
-    name: '博客',
-    link: 'https://blog.imsyy.top/',
+    name: 'Github',
+    link: 'https://github.com/W-xiaowei',
+    otherLink: true,
   },
   {
     icon: Cloud,
-    name: '网盘',
-    link: 'https://pan.imsyy.top/',
+    name: '空间',
+    link: '/Zone/work/tal',
   },
   {
     icon: CompactDisc,
     name: '音乐',
     link: 'https://music.imsyy.top/',
+    otherLink: true,
   },
   {
     icon: Compass,
     name: '起始页',
-    link: 'https://nav.imsyy.top/',
+    link: '/Snavigation',
   },
   {
     icon: Book,
     name: '网址集',
-    link: 'https://web.imsyy.top/',
+    link: '/MapUrlList',
   },
   {
     icon: Fire,
     name: '今日热榜',
-    link: 'https://hot.imsyy.top/',
+    link: '/Provider/home',
   },
 ]
 
 // 链接跳转
-const jumpLink = (url) => {
-  window.open(url, '_blank')
+const jumpLink = (item) => {
+  if (item.otherLink) {
+    window.open(item.link, '_blank')
+  } else {
+    router.push({
+      path: item.link,
+    })
+  }
 }
 </script>
 
@@ -104,6 +110,7 @@ const jumpLink = (url) => {
       justify-content: center;
       animation: fade;
       -webkit-animation: fade 0.5s;
+      cursor: pointer;
 
       &:hover {
         transform: scale(1.02);

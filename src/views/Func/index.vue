@@ -59,6 +59,7 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .function {
+  color: #fff;
   height: 165px;
   display: flex;
   flex-direction: row;
