@@ -29,7 +29,15 @@
 
 <script setup>
 import { Icon } from '@vicons/utils'
-import { Link, Blog, CompactDisc, Cloud, Compass, Book, Fire } from '@vicons/fa'
+import {
+  Link,
+  Github,
+  CompactDisc,
+  Cloud,
+  Compass,
+  Book,
+  Fire,
+} from '@vicons/fa'
 import { useRouter } from 'vue-router'
 import { mainStore } from '@/store'
 
@@ -40,7 +48,7 @@ const router = useRouter()
 // 建议不要超出6个，若需要超出请自行调整样式
 let linksData = [
   {
-    icon: Blog,
+    icon: Github,
     name: 'Github',
     link: 'https://github.com/W-xiaowei',
     otherLink: true,

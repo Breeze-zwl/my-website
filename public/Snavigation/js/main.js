@@ -8,7 +8,7 @@ window.addEventListener('load', function () {
 
     //用户欢迎
     iziToast.settings({
-        timeout: 3000,
+        timeout: 2000,
         backgroundColor: '#ffffff40',
         titleColor: '#efefef',
         messageColor: '#efefef',

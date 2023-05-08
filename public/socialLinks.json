@@ -1,9 +1,11 @@
-[{
-    "name": "Github",
-    "icon": "/images/icon/github.png",
-    "tip": "去 Github 看看",
-    "url": "https://github.com/W-xiaowei"
-}, {
+[
+  {
+    "name": "Phone",
+    "icon": "/images/icon/phone.png",
+    "tip": "13102202375",
+    "url": "tel:13102202375"
+}, 
+{
     "name": "BLOG",
     "icon": "/images/icon/blog.png",
     "tip": "学习吗?",

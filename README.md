@@ -46,6 +46,8 @@ yarn dev
 
 # 构建
 yarn build
+
+#.nvmrc文件制定了node版本，如果有自己的发布平台node版本要大于16.0.0
 ```
 > 构建完成后，静态资源会在 **`dist` 目录** 中生成，可将 **`dist` 文件夹下的文件**上传至服务器，也可使用 `Vercel` 等托管平台一键导入并自动部署
 
@@ -75,6 +77,9 @@ VITE_SONG_TYPE = "playlist"
 # 播放 ID
 VITE_SONG_ID = "7452421335"
 ```
+### icon 通过naive-ui 使用xicons
+
+在使用前可以到网站进行预览和查询，https://www.xicons.org/#/
 
 ### 字体
 
