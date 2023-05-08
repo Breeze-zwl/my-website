@@ -3,7 +3,8 @@
     "name": "Phone",
     "icon": "/images/icon/phone.png",
     "tip": "13102202375",
-    "url": "tel:13102202375"
+    "url": "tel:13102202375",
+    "height": "21"
 }, 
 {
     "name": "BLOG",
