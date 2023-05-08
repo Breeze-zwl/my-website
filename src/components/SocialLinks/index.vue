@@ -9,6 +9,7 @@
         :target="item.url == '#' ? '' : '_blank'"
         @mouseenter="socialTip = item.tip"
         @mouseleave="socialTip = '通过这里联系我吧'"
+        @click="copytext(item.tip)"
       >
         <img
           class="icon"
@@ -48,7 +49,17 @@ const getSocialLinksData = () => {
       })
     })
 }
-
+const copytext = (value) => {
+  console.log(111)
+  navigator.clipboard
+    .writeText(value)
+    .then(() => {
+      ElMessage('内容已被复制到剪贴板')
+    })
+    .catch((err) => {
+      ElMessage(err)
+    })
+}
 onMounted(() => {
   getSocialLinksData()
 })

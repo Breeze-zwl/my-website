@@ -77,6 +77,9 @@ VITE_SONG_TYPE = "playlist"
 # 播放 ID
 VITE_SONG_ID = "7452421335"
 ```
+### icon 通过naive-ui 使用xicons
+
+在使用前可以到网站进行预览和查询，https://www.xicons.org/#/
 
 ### 字体
 

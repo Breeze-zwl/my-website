@@ -1,6 +1,6 @@
 <template>
   <iframe
-    src="static/nav.html"
+    src="OneNav/nav.html"
     id="f1"
     ref="frame1"
     frameborder="0"
