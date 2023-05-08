@@ -14,7 +14,7 @@ import timeline from '@/pages/Zone/components/timeline.vue'
 <style lang="scss" scoped>
 .work-box {
   display: flex;
-  height: calc(100vh - 180px);
+  min-height: 100vh;
   .work-timeline {
     width: 33%;
   }
