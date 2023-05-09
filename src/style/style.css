@@ -13,11 +13,11 @@ a,
 p {
   margin: 0;
   padding: 0;
-  -webkit-user-select: none;
+  /* -webkit-user-select: none;
   -webkit-user-drag: none;
   -moz-user-select: none;
    -ms-user-select: none;
-       user-select: none;
+       user-select: none; */
   text-decoration: none;
   transition: 0.3s;
   color: #fff;
