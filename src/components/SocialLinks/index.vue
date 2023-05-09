@@ -10,6 +10,7 @@
         @mouseenter="socialTip = item.tip"
         @mouseleave="socialTip = '通过这里联系我吧'"
         @click="copytext(item.tip)"
+        class="copyBtn"
       >
         <img
           class="icon"
@@ -26,6 +27,7 @@
 import { ref, onMounted } from 'vue'
 import { getSocialLinks } from '@/api'
 import { Error } from '@icon-park/vue-next'
+import ClipboardJS from 'clipboard'
 
 // 社交链接数据
 let socialLinksData = ref([])
@@ -50,15 +52,13 @@ const getSocialLinksData = () => {
     })
 }
 const copytext = (value) => {
-  console.log(111)
-  navigator.clipboard
-    .writeText(value)
-    .then(() => {
-      ElMessage('内容已被复制到剪贴板')
-    })
-    .catch((err) => {
-      ElMessage(err)
-    })
+  new ClipboardJS('.copyBtn', {
+    text: function (trigger) {
+      return value
+    },
+  }).on('success', function (e) {
+    ElMessage('内容已被复制到剪贴板')
+  })
 }
 onMounted(() => {
   getSocialLinksData()
