@@ -52,12 +52,14 @@ const getSocialLinksData = () => {
     })
 }
 const copytext = (value) => {
-  new ClipboardJS('.copyBtn', {
+  let clipboard = new ClipboardJS('.copyBtn', {
     text: function (trigger) {
       return value
     },
-  }).on('success', function (e) {
+  })
+  clipboard.on('success', function (e) {
     ElMessage('内容已被复制到剪贴板')
+    clipboard.destroy()
   })
 }
 onMounted(() => {
