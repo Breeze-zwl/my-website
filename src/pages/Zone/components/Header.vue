@@ -42,7 +42,7 @@
                     </ul>
                   </li> -->
                   <li class="  ">
-                    <a @click.stop="handlezonesort('She')">she</a>
+                    <a @click.stop="handlezonesort('She')">关于</a>
                   </li>
                 </ul>
               </div>
