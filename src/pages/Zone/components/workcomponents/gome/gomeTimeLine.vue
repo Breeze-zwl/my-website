@@ -2,28 +2,48 @@
   <div class="taldetailbox">
     <img class="backtal" src="/images/icon/leftarrow.png" @click="backtal" />
     <div class="talkapian">
-      <img src="/gome/bn.jpeg" width="200" height="250" align="right" />
+      <n-image
+        src="/gome/bn.jpeg"
+        width="200"
+        height="250"
+        :img-props="{ align: 'right' }"
+      />
       <span class="artil"
         >在国美的记忆真是少的可怜，甚至连合同都找不到了，主要是因为当时主要的注意力不在工作上面，甚至入职日期以及任何细节都记不清了，这个是当时百年视频里面我手拿的玩偶，
       </span>
       <br />
     </div>
     <div class="talkapian">
-      <img src="/gome/cf.jpeg" width="200" height="280" align="left" />
+      <n-image
+        src="/gome/cf.jpeg"
+        width="200"
+        height="280"
+        :img-props="{ align: 'left' }"
+      />
       <span class="artil"
         >去了国美以后就喜欢上了咖啡，特别是luckyin的丝绒拿铁，不知道为什么，基本每天一杯
       </span>
       <br />
     </div>
     <div class="talkapian">
-      <img src="/gome/gz.jpeg" width="200" height="250" align="right" />
+      <n-image
+        src="/gome/gz.jpeg"
+        width="200"
+        height="250"
+        :img-props="{ align: 'right' }"
+      />
       <span class="artil">
         同样是感谢百度网盘自动备份，又一次记录了我在国美的某一次工资，哈哈
       </span>
       <br />
     </div>
     <div class="talkapian">
-      <img src="/gome/lz.jpeg" width="200" height="280" align="left" />
+      <n-image
+        src="/gome/lz.jpeg"
+        width="200"
+        height="280"
+        :img-props="{ align: 'left' }"
+      />
       <span class="artil"
         >离职后在鹏润大厦前的一次拍照，记得当时是在等滴滴司机，无聊拍的，
       </span>
@@ -72,5 +92,8 @@ const backtal = () => {
     padding-bottom: 50px;
     color: #f108a4;
   }
+}
+.n-image {
+  display: block;
 }
 </style>

@@ -112,10 +112,10 @@ const routes = [
         path: 'Like',
         component: () => import("@/pages/Zone/components/Like.vue"),
       },
-       //空间She页面
+       //空间About页面
        {
         path: 'She',
-        component: () => import("@/pages/Zone/components/She.vue"),
+        component: () => import("@/pages/Zone/components/About.vue"),
       },
     ]
   }
