@@ -40,16 +40,16 @@
         <el-card class="update">
           <template #header>
             <div class="card-header" style="color: #fff">
-              <span>更新日志</span>
+              <span>关于本站</span>
             </div>
           </template>
           <div class="upnote">
-            <div v-for="item in upData.new" :key="item" class="uptext">
-              <add-one theme="outline" size="22" />
-              {{ item }}
-            </div>
             <div v-for="item in upData.fix" :key="item" class="uptext">
               <bug theme="outline" size="22" />
+              {{ item }}
+            </div>
+            <div v-for="item in upData.new" :key="item" class="uptext">
+              <add-one theme="outline" size="22" />
               {{ item }}
             </div>
           </div>
@@ -87,19 +87,26 @@ let siteUrl = import.meta.env.VITE_SITE_URL.split('.')
 
 // 更新日志
 let upData = reactive({
-  new: [
-    // "采用 Vue 进行重构",
-    // "音乐歌单支持快速自定义",
-    // "壁纸支持个性化设置",
-    // "音乐播放器支持音量控制",
-    '这是第一次添加',
-  ],
   fix: [
     // "修复天气 API",
     // "时光胶囊显示错误",
     // "移动端动画及细节",
     // "图标更换为 IconPark",
-    '我的头发，先救我的头发！！！',
+    '本站采用vite + vue3 + vuex + vue-router开发',
+    '相关UI库包括：naive-ui、element-plus、swiper',
+    '今日热点Koa服务部署在Vercel',
+    '代码托管在Github',
+    '静态资源放在阿里云OSS',
+    'CI/CD使用阿里云开发平台',
+    '适配手机端，手机端动漫壁纸可能加载较慢',
+  ],
+  new: [
+    '音乐还未找到合适的服务，暂用他人的...',
+    // "采用 Vue 进行重构",
+    // "音乐歌单支持快速自定义",
+    // "壁纸支持个性化设置",
+    // "音乐播放器支持音量控制",
+    // '这是第一次添加',
   ],
 })
 // // 跳转源代码仓库

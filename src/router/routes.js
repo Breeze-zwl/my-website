@@ -114,7 +114,7 @@ const routes = [
       },
        //空间About页面
        {
-        path: 'She',
+        path: 'About',
         component: () => import("@/pages/Zone/components/About.vue"),
       },
     ]
