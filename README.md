@@ -59,6 +59,11 @@ yarn build
 
 也可自行更换其他方式
 
+### 今日热点
+
+接口测试地址：https://zwl-top.top/
+
+服务部署在Vercel,代码在Gihuab
 
 ### 音乐
 
