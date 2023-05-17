@@ -38,6 +38,7 @@ const data = ref([
   color: black;
   .white-box {
     width: 90%;
+    max-width: 1100px;
     padding: 50px 40px;
     background-color: #fff;
     box-shadow: 0 4px 8px 6px rgba(7, 17, 27, 0.06) !important;
