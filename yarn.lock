@@ -3576,6 +3576,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+v3-infinite-loading@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/v3-infinite-loading/-/v3-infinite-loading-1.2.2.tgz#19565772cc255bd87369b3ad46090cb621a42d3b"
+  integrity sha512-MWJc6yChnqeUasBFJ3Enu8IGPcQgRMSTrAEtT1MsHBEx+QjwvNTaY8o+8V9DgVt1MVhQSl3MC55hsaWLJmpRMw==
+
 vdirs@^0.1.4, vdirs@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/vdirs/-/vdirs-0.1.8.tgz#a103bc43baca738f8dea912a7e9737154a19dbc2"

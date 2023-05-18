@@ -42,7 +42,7 @@
                     </ul>
                   </li> -->
                   <li class="  ">
-                    <a @click.stop="handlezonesort('About')">相册</a>
+                    <a @click.stop="handlezonesort('About/albums')">相册</a>
                   </li>
                 </ul>
               </div>
