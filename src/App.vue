@@ -9,6 +9,9 @@ import { helloInit, checkDays } from '@/utils/getTime.js'
 import { mainStore } from '@/store'
 import config from '@/../package.json'
 import RoteButton from '@/components/RoteButton/RoteButton.vue'
+//鼠标点击出文字效果
+import '@/utils/mouse'
+
 // 新春灯笼
 // import '@/utils/lantern.js'
 const showAnimate = ref(false)
