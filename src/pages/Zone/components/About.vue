@@ -10,6 +10,7 @@
 .life-box {
   color: #fff;
   height: 100%;
+  min-height: 100vh;
   color: black;
   .white-box {
     width: 90%;
