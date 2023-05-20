@@ -21,6 +21,7 @@
     transition: all 0.3s;
     border-radius: 8px;
     margin: auto;
+    position: relative;
   }
 }
 </style>
