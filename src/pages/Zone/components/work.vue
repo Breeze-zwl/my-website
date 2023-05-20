@@ -23,6 +23,7 @@ import timeline from '@/pages/Zone/components/timeline.vue'
     background-color: white;
     color: white;
     padding: 0px 30px;
+    position: relative;
   }
 }
 @media screen and (max-width: 760px) {

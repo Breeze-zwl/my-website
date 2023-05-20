@@ -4,6 +4,7 @@
     <n-layout embedded :native-scrollbar="false" class="fixed">
       <n-back-top :visibility-height="2" @update:show="backTopChange" />
       <div class="zone-box">
+        <img class="zone-bg" src="/images/background11.webp" />
         <div style="height: 180px">
           <Header v-if="isShowHeader"></Header>
         </div>
@@ -109,10 +110,19 @@ setTimeout(() => {
     background-color: #fff;
     width: 100%;
     height: 100%;
-    background: url('/images/background11.webp') no-repeat;
+    // background: url('/images/background11.webp') no-repeat;
+    object-fit: cover;
     background-position: left top;
     background-size: 100% 100%;
     // padding: 20rem 0;
+  }
+  .zone-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
   }
   .zone-linshi {
     color: #fff;

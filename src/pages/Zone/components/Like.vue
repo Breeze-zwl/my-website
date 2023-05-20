@@ -72,6 +72,7 @@ const modules = ref([EffectCards])
   color: white;
   text-align: center;
   // overflow: hidden;
+  position: relative;
 }
 .mobildH {
   height: 100vh;
