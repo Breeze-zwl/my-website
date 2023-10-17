@@ -27,8 +27,7 @@ jobs:
           curl -L https://gosspublic.alicdn.com/ossutil/1.7.0/ossutil64 -o /usr/local/bin/ossutil
           chmod +x /usr/local/bin/ossutil
       - name: Sync files to OSS
-      - uses: actions/checkout@master
-      - uses: manyuanrong/setup-ossutil@v2.0
+        uses: manyuanrong/setup-ossutil@v2.0
         with:
           endpoint: 'oss-cn-beijing.aliyuncs.com'
           access-key-id: ${{ secrets.OSS_ACCESS_KEY_ID }}
