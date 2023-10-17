@@ -1,20 +1,18 @@
-- name: Delete existing files in OSS
-        env:
-          ACCESS_KEY_ID: LTAI5tPPGGPq7eMt1YXQ15vo
-          ACCESS_KEY_SECRET: G6IuwgNAPL7nET69X7DMaFiLFuIj8h
-        run: |
-          ossutil rm -rf oss://zwl-test-but --access-key-id=LTAI5tPPGGPq7eMt1YXQ15vo --access-key-secret=G6IuwgNAPL7nET69X7DMaFiLFuIj8h --endpoint=oss-cn-beijing.aliyuncs.com
-          
 name: Sync to OSS
 on:
   push:
     branches:
       - master # 这里可以根据您的需要更改分支名称
-
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
+    - name: Delete existing files in OSS
+        env:
+          ACCESS_KEY_ID: LTAI5tPPGGPq7eMt1YXQ15vo
+          ACCESS_KEY_SECRET: G6IuwgNAPL7nET69X7DMaFiLFuIj8h
+        run: |
+          ossutil rm -rf oss://zwl-test-but --access-key-id=LTAI5tPPGGPq7eMt1YXQ15vo --access-key-secret=G6IuwgNAPL7nET69X7DMaFiLFuIj8h --endpoint=oss-cn-beijing.aliyuncs.com
       - name: Checkout code
         uses: actions/checkout@v2
       # 执行应用打包步骤
