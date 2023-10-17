@@ -34,4 +34,4 @@ jobs:
         #   access-key-secret: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
         # run: ossutil cp -rf ./dist oss://zwl-test-but
         run: |
-          ossutil cp -r ./dist oss://zwl-test-but --access-key-id="${{ secrets.OSS_ACCESS_KEY_ID }}" --access-key-secret="${{ secrets.OSS_ACCESS_KEY_SECRET }}" --endpoint=oss-cn-beijing.aliyuncs.com
+          ossutil cp -r ./dist oss://zwl-test-but --access-key-id=${{ secrets.OSS_ACCESS_KEY_ID }} --access-key-secret=${{ secrets.OSS_ACCESS_KEY_SECRET }} --endpoint=oss-cn-beijing.aliyuncs.com
