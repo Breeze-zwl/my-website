@@ -26,6 +26,7 @@ jobs:
         run: |
           curl -L https://gosspublic.alicdn.com/ossutil/1.7.0/ossutil64 -o /usr/local/bin/ossutil
           chmod +x /usr/local/bin/ossutil
+      steps:
       - name: Sync files to OSS
         uses: manyuanrong/setup-ossutil@v2.0
         with:
