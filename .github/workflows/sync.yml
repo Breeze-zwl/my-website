@@ -15,10 +15,6 @@ jobs:
           npm install -g yarn
           yarn install
           yarn build
-      # - name: Install ossutil
-      #   run: |
-      #     curl -L https://gosspublic.alicdn.com/ossutil/1.7.0/ossutil64 -o /usr/local/bin/ossutil
-      #     chmod +x /usr/local/bin/ossutil
       - name: Sync files to OSS
         uses: manyuanrong/setup-ossutil@v2.0
         with:
@@ -26,5 +22,3 @@ jobs:
           access-key-id: ${{ secrets.OSS_KEY }}
           access-key-secret: ${{ secrets.OSS_SECRET }}
       - run: ossutil cp -rf ./dist oss://zwl-test-but
-        # run: |
-        #   ossutil cp -r ./dist oss://zwl-test-but --access-key-id=LTAI5tPPGGPq7eMt1YXQ15vo --access-key-secret=G6IuwgNAPL7nET69X7DMaFiLFuIj8h --endpoint=oss-cn-beijing.aliyuncs.com
