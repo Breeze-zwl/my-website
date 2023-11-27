@@ -109,6 +109,36 @@ export const mainStore = defineStore('main', {
           value: "douban_new",
           order: 13,
           show: true
+        },
+        {
+          label: "英雄联盟",
+          value: "lol",
+          order: 14,
+          show: true
+        },
+        {
+          label: "快手",
+          value: "kuaishou",
+          order: 15,
+          show: true
+        },
+        {
+          label: "原神",
+          value: "genshin",
+          order: 16,
+          show: true
+        },
+        {
+          label: "抖音热歌榜",
+          value: "douyin_music",
+          order: 17,
+          show: true
+        },
+        {
+          label: "微信读书",
+          value: "weread",
+          order: 18,
+          show: true
         }
       ],
       // 链接跳转方式

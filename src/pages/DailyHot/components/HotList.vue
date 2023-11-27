@@ -152,7 +152,6 @@ console.log('0-0-0-0-0-0-0-0-', props.hotType)
 const getHotListsData = (type, isNew = false) => {
   // hotListData.value = null;
   getHotLists(type, isNew).then((res) => {
-    console.log(res)
     if (res.code === 200) {
       listLoading.value = false
       hotListData.value = res
