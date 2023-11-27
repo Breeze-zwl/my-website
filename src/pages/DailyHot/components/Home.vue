@@ -30,7 +30,7 @@ import { mainStore } from '@/store'
 import HotList from '@/pages/DailyHot/components/HotList.vue'
 
 const store = mainStore()
-
+console.log(store.newsArr);
 // 重置
 const reset = () => {
   $dialog.warning({

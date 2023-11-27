@@ -1,16 +1,8 @@
-- name: Delete existing files in OSS
-        env:
-          ACCESS_KEY_ID: LTAI5tPPGGPq7eMt1YXQ15vo
-          ACCESS_KEY_SECRET: G6IuwgNAPL7nET69X7DMaFiLFuIj8h
-        run: |
-          ossutil rm -rf oss://zwl-test-but --access-key-id=LTAI5tPPGGPq7eMt1YXQ15vo --access-key-secret=G6IuwgNAPL7nET69X7DMaFiLFuIj8h --endpoint=oss-cn-beijing.aliyuncs.com
-          
 name: Sync to OSS
 on:
   push:
     branches:
       - master # 这里可以根据您的需要更改分支名称
-
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -23,14 +15,10 @@ jobs:
           npm install -g yarn
           yarn install
           yarn build
-      - name: Install ossutil
-        run: |
-          curl -L https://gosspublic.alicdn.com/ossutil/1.7.0/ossutil64 -o /usr/local/bin/ossutil
-          chmod +x /usr/local/bin/ossutil
       - name: Sync files to OSS
-        env:
-          ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
-          ACCESS_KEY_SECRET: ${{ secrets.ACCESS_KEY_SECRET }}
-        run: |
-          ossutil cp -r ./dist oss://zwl-test-but --access-key-id=LTAI5tPPGGPq7eMt1YXQ15vo --access-key-secret=G6IuwgNAPL7nET69X7DMaFiLFuIj8h --endpoint=oss-cn-beijing.aliyuncs.com
-
+        uses: manyuanrong/setup-ossutil@v2.0
+        with:
+          endpoint: 'oss-cn-beijing.aliyuncs.com'
+          access-key-id: ${{ secrets.OSS_KEY }}
+          access-key-secret: ${{ secrets.OSS_SECRET }}
+      - run: ossutil cp -rf ./dist oss://zwl-test-but
