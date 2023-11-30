@@ -50,7 +50,7 @@ let linksData = [
   {
     icon: Github,
     name: 'Github',
-    link: 'https://github.com/W-xiaowei',
+    link: 'https://github.com/Breeze-zwl',
     otherLink: true,
   },
   {
