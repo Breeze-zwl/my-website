@@ -139,6 +139,12 @@ export const mainStore = defineStore('main', {
           value: "weread",
           order: 18,
           show: true
+        },
+        {
+          label: "永杰无间",
+          value: "yjwujian",
+          order: 19,
+          show: true
         }
       ],
       // 链接跳转方式
