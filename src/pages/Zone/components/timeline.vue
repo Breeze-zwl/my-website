@@ -96,6 +96,9 @@ const handleWorkRouter = (val) => {
 
 .timeline-event {
   position: relative;
+  &:hover{
+    transform: scale(1.1);
+  }
 }
 
 .timeline-event:hover .timeline-event-icon {
