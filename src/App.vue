@@ -13,7 +13,7 @@ import RoteButton from '@/components/RoteButton/RoteButton.vue'
 import '@/utils/mouse'
 
 // 新春灯笼
-// import '@/utils/lantern.js'
+import '@/utils/lantern.js'
 const showAnimate = ref(false)
 const store = mainStore()
 
