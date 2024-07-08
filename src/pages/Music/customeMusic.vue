@@ -1,64 +1,118 @@
 <template>
   <div class="Music">
+    <div class="Music_header"></div>
     <!-- <n-tabs type="line">
       <n-tab-pane name="oasis" tab="Oasis"> Wonderwall </n-tab-pane>
       <n-tab-pane name="the beatles" tab="the Beatles"> Hey Jude </n-tab-pane>
       <n-tab-pane name="jay chou" tab="周杰伦"> 七里香 </n-tab-pane>
     </n-tabs> -->
     <div class="PCmusicList">
-      <swiper
-        :modules="modules"
-        :slides-per-view="3"
-        :space-between="50"
-        navigation
-        :pagination="{ clickable: true }"
-        @swiper="onSwiper"
-        @slideChange="onSlideChange"
-      >
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-      </swiper>
+      <div class="swiper-container-wrapper">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="music_sort_box">
+                <img src="https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/1.jpg" />
+                <div>那些要用耳机才能听的歌</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="music_sort_box">
+                <img src="https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/1.jpg" />
+                <div>那些要用耳机才能听的歌</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="music_sort_box">
+                <img src="https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/1.jpg" />
+                <div>那些要用耳机才能听的歌</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="music_sort_box">
+                <img src="https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/1.jpg" />
+                <div>那些要用耳机才能听的歌</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="music_sort_box">
+                <img src="https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/1.jpg" />
+                <div>那些要用耳机才能听的歌</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="music_sort_box">
+                <img src="https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/1.jpg" />
+                <div>那些要用耳机才能听的歌</div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+        <div class="swiper-pagination-wrapper">
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script setup>
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import { onMounted } from 'vue';
+import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
+import 'swiper/swiper-bundle.min.css';
 
-import 'swiper/css';
-import 'swiper/css/bundle'
-
-const modules = [Navigation, Pagination, Scrollbar, A11y];
-const onSwiper = (swiper) => {
-  console.log(swiper);
-};
-const onSlideChange = () => {
-  console.log('slide change');
-};
+onMounted(() => {
+  new Swiper('.swiper', {
+    modules: [Navigation, Pagination, Scrollbar],
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+    slidesPerView: 4,
+  });
+});
 </script>
 <style lang="scss" scoped>
 .Music {
   width: 100%;
   height: 100%;
   background-color: white;
-  // background-image: url('https://website-image-as.oss-cn-beijing.aliyuncs.com/image/d/d1.jpg');
-  // background-size: 100% 100%;
-  // background-position: center;
-  .carousel-img {
-    width: 240px;
-    height: 240px;
-    object-fit: cover;
-    flex-shrink: 0 !important;
+  .Music_header {
+    height: 40px;
   }
   .PCmusicList {
     width: 80%;
     margin: auto;
-    display: flex;
-    justify-content: center;
+    .music_sort_box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      img {
+        width: 240px;
+      }
+    }
+  }
+  .swiper-container-wrapper {
+    position: relative;
+  }
+
+  .swiper-pagination-wrapper {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .swiper-pagination {
+    display: inline-block;
+    position: static !important;
   }
 }
 </style>
