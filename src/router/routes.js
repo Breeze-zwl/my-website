@@ -145,6 +145,12 @@ const routes = [
       },
     ],
   },
+  // 音乐
+  {
+    path: '/customeMusic/',
+    name: 'customeMusic',
+    component: () => import('@/pages/Music/customeMusic.vue'),
+  }
 ]
 
 export default routes

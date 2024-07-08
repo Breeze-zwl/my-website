@@ -48,10 +48,10 @@
         </swiper-slide>
       </swiper>
     </div>
-    <div class="introduce">
+    <!-- <div class="introduce">
       本人：1994年，188cm，85kg，平时除了撸代码，最喜欢的就是篮球，其次身为一个男生当然是机车，然后就是打打游戏，健谈爱笑，少年感十足，当然这不是相亲，如果你跟我有共同的爱好，
       首页有我的联系方式，嘻嘻
-    </div>
+    </div> -->
   </div>
 </template>
 <script setup>
