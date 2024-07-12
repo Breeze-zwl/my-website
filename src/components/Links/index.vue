@@ -61,8 +61,9 @@ let linksData = [
   {
     icon: CompactDisc,
     name: '音乐',
-    link: 'https://music.imsyy.top/',
-    otherLink: true,
+    link: '/customeMusic'
+    // link: 'https://music.imsyy.top/',
+    // otherLink: true,
   },
   {
     icon: Compass,
