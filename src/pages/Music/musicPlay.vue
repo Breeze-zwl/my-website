@@ -161,7 +161,8 @@ export default {
   color: #fff;
   width: 100%;
   position: fixed;
-  bottom: env(safe-area-inset-bottom);;
+  bottom: 0;
+  padding-bottom: env(safe-area-inset-bottom);
   height: 18vh
 }
 
