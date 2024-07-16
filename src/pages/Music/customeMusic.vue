@@ -233,7 +233,6 @@ const handleChangeMusicList = (val) => {
   }
 
   .musicListBox {
-    width: 40%;
     margin-left: 7%;
     .musicName {
       display: flex;
