@@ -161,7 +161,7 @@ export default {
   color: #fff;
   width: 100%;
   position: fixed;
-  bottom: 0px;
+  bottom: env(safe-area-inset-bottom);;
   height: 18vh
 }
 
