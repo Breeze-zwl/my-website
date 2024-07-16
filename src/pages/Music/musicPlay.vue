@@ -162,8 +162,11 @@ export default {
   width: 100%;
   position: fixed;
   bottom: 0;
-  padding-bottom: env(safe-area-inset-bottom);
-  height: 18vh
+  height: 18vh;
+  box-sizing: content-box;
+  padding-bottom: 0 !important;
+  padding-bottom: constant(safe-area-inset-bottom) !important;
+  padding-bottom: env(safe-area-inset-bottom) !important;
 }
 
 .controls {
