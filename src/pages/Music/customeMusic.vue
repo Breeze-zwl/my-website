@@ -2,10 +2,10 @@
   <div class="Music">
     原来音乐模块被网易云发邮件警告了，新的内容建设中。。。
     <n-tabs type="line" animated justify-content="space-evenly" v-if="store.innerWidth < 720">
-      <n-tab-pane name="oasis" tab="耳机"> 耳机 </n-tab-pane>
-      <n-tab-pane name="the beatles" tab="下架"> 下架 </n-tab-pane>
-      <n-tab-pane name="jay chou" tab="混淆"> 混淆 </n-tab-pane>
-      <n-tab-pane name="jay chou" tab="混淆"> 混淆 </n-tab-pane>
+      <n-tab-pane name="oasis" tab="抖音热歌">  </n-tab-pane>
+      <n-tab-pane name="the beatles" tab="收藏歌单">  </n-tab-pane>
+      <n-tab-pane name="jay chou" tab="混淆歌单">  </n-tab-pane>
+      <n-tab-pane name="当前" tab="当前歌单">  </n-tab-pane>
     </n-tabs>
     <div class="PCmusicList" v-show="store.innerWidth >= 720">
       <div class="swiper-container-wrapper">
@@ -139,19 +139,19 @@ const musicList = [
 const imageList = [
   {
     imgurl: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/1.jpg',
-    desc: '抖音剪辑歌曲',
+    desc: '抖音热歌',
   },
   {
     imgurl: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/9.jpg',
-    desc: '比较high的歌',
+    desc: '收藏歌单',
   },
   {
     imgurl: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/4.jpg',
-    desc: '全部歌曲',
+    desc: '混淆歌单',
   },
   {
     imgurl: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/16.jpg',
-    desc: '当前列表',
+    desc: '当前歌单',
   },
 ];
 

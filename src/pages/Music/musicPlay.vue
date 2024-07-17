@@ -1,40 +1,41 @@
 <template>
   <div class="music-player">
     <div class="disc-container" :class="{ spinning: isPlaying }">
-      <img src="https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/1.jpg" alt="Disc" class="disc" />
+      <img
+        src="https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/hjcp.jpeg"
+        alt="Disc"
+        class="disc"
+        @click="playPause"
+      />
     </div>
-    <audio ref="audio" @timeupdate="updateTime" @loadedmetadata="updateDuration" @ended="resetPlayer">
+    <audio
+      ref="audio"
+      @timeupdate="updateTime"
+      @loadedmetadata="updateDuration"
+      @ended="resetPlayer"
+    >
       <source :src="audioSrc" type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
     <div class="controls">
       <button @click="prevTrack">
-        <i class="fas fa-backward"></i>
-        上一曲
+        <img :src="pre" />
       </button>
       <button @click="playPause" v-if="!isPlaying">
-        <i :class="isPlaying ? 'fas fa-pause' : 'fas fa-play'"></i>
-        播放
+        <img :src="play" />
       </button>
       <button @click="playPause" v-if="isPlaying">
-        <i :class="isPlaying ? 'fas fa-pause' : 'fas fa-play'"></i>
-        暂停
+        <img :src="pause" />
       </button>
       <button @click="nextTrack">
-        <i class="fas fa-forward"></i>
-        下一曲
-      </button>
-      <button @click="stop">
-        停止
-        <i class="fas fa-stop"></i>
+        <img :src="next" />
       </button>
     </div>
     <div class="voice">
+      <!-- <img :src="voiceN" /> -->
       <input type="range" v-model="volume" min="0" max="1" step="0.01" @input="changeVolume" />
-      <div class="time">
-        {{ formatTime(currentTime) }} / {{ formatTime(duration) }}
-      </div>
     </div>
+    <div class="time">{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</div>
     <div class="progress-container" @mousedown="startDrag" @mouseup="endDrag" @mousemove="drag">
       <div class="progress" :style="{ width: progressBarWidth }"></div>
       <div class="thumb" :style="{ left: progressBarWidth }"></div>
@@ -43,6 +44,12 @@
 </template>
 
 <script>
+import play from './image/play.png'
+import pause from './image/pause.png'
+import pre from './image/pre.png'
+import next from './image/next.png'
+import voiceN from './image/next.png'
+
 export default {
   data() {
     return {
@@ -50,7 +57,12 @@ export default {
       isPlaying: false,
       currentTime: 0,
       duration: 0,
-      volume: 0.5
+      volume: 0.5,
+      pre,
+      next,
+      pause,
+      play,
+      voiceN
     };
   },
   computed: {
@@ -59,16 +71,16 @@ export default {
     },
     progressBarWidth() {
       return (this.currentTime / this.duration) * 100 + '%';
-    }
+    },
   },
   methods: {
     // 上一曲
-    prevTrack(){
+    prevTrack() {
       console.log(111);
     },
 
     // 下一曲
-    nextTrack(){
+    nextTrack() {
       console.log(222);
     },
 
@@ -140,12 +152,12 @@ export default {
       const minutes = Math.floor(seconds / 60);
       const sec = Math.floor(seconds % 60);
       return `${minutes}:${sec < 10 ? '0' : ''}${sec}`;
-    }
+    },
   },
   mounted() {
     const audio = this.$refs.audio;
     audio.volume = this.volume;
-  }
+  },
 };
 </script>
 
@@ -156,7 +168,7 @@ export default {
   align-items: center;
   background: linear-gradient(135deg, #667eea, #764ba2);
   padding: 20px;
-  border-radius: 15px;
+  border-radius: 15px 15px 0 0;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   color: #fff;
   width: 100%;
@@ -172,14 +184,20 @@ export default {
   margin-top: 10px;
   position: absolute;
   left: 5%;
-  bottom: 40px;
+  top: 40px;
+  img{
+    width: 4vh;
+  }
 }
 
-.voice{
+.voice {
   position: absolute;
   right: 5%;
-  bottom: 40px;
+  top: 60px;
   display: flex;
+  img{
+    width: 10px;
+  }
 }
 
 .controls button {
@@ -195,13 +213,16 @@ export default {
   transform: scale(1.2);
 }
 
-.controls input[type="range"] {
+.controls input[type='range'] {
   width: 100px;
 }
 
 .time {
   margin-left: 10px;
   font-size: 14px;
+  position: absolute;
+  right: 5%;
+  bottom: 30px;
 }
 
 .progress-container {
@@ -223,12 +244,14 @@ export default {
 
 .disc-container {
   position: absolute;
-  top: -25px;
+  top: -25%;
+  cursor: pointer;
+  width: 12vh;
 }
 
 .disc {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   transition: transform 0.5s ease;
 }
