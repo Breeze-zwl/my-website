@@ -233,7 +233,8 @@ const handleChangeMusicList = (val) => {
   }
 
   .musicListBox {
-    margin-left: 7%;
+    width: 86%;
+    margin: auto;
     .musicName {
       display: flex;
       align-items: center;

@@ -14,6 +14,7 @@
       @timeupdate="updateTime"
       @loadedmetadata="updateDuration"
       @ended="resetPlayer"
+      preload="auto"
     >
       <source :src="audioSrc" type="audio/mp4" />
       Your browser does not support the audio element.
@@ -162,6 +163,12 @@ export default {
   mounted() {
     const audio = this.$refs.audio;
     audio.volume = this.volume;
+    audio.addEventListener('volumechange', this.changeVolume);
+    this.audioSrc = this.audioSrc;
+  },
+  beforeDestroy() {
+    const audio = this.$refs.audio;
+    audio.removeEventListener('volumechange', this.changeVolume);
   },
 };
 </script>
