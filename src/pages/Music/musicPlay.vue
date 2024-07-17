@@ -1,5 +1,6 @@
 <template>
   <div class="music-player">
+    {{ innerWidth }}
     <div class="disc-container" :class="{ spinning: isPlaying }">
       <img
         src="https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/hjcp.jpeg"
@@ -14,7 +15,7 @@
       @loadedmetadata="updateDuration"
       @ended="resetPlayer"
     >
-      <source :src="audioSrc" type="audio/mp3" />
+      <source :src="audioSrc" type="audio/mp4" />
       Your browser does not support the audio element.
     </audio>
     <div class="controls">
@@ -32,8 +33,8 @@
       </button>
     </div>
     <div class="voice">
-      <!-- <img :src="voiceN" /> -->
-      <input type="range" v-model="volume" min="0" max="1" step="0.01" @input="changeVolume" />
+      <img :src="voiceN" />
+      <input class="phoneRange" type="range" v-model="volume" min="0" max="1" step="0.01" @input="changeVolume" />
     </div>
     <div class="time">{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</div>
     <div class="progress-container" @mousedown="startDrag" @mouseup="endDrag" @mousemove="drag">
@@ -48,12 +49,13 @@ import play from './image/play.png'
 import pause from './image/pause.png'
 import pre from './image/pre.png'
 import next from './image/next.png'
-import voiceN from './image/next.png'
+import voiceN from './image/voiceN.png'
+
 
 export default {
   data() {
     return {
-      audioSrc: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/music/welove.mp4', // 你的音频文件路径
+      audioSrc: 'https://sf5-hl-cdn-tos.douyinstatic.com/obj/tos-cn-ve-2774/oEgC9eZFHQ1MfSRnrfkzFp8AayDWqAQMABBgUs', // 你的音频文件路径
       isPlaying: false,
       currentTime: 0,
       duration: 0,
@@ -62,7 +64,7 @@ export default {
       next,
       pause,
       play,
-      voiceN
+      voiceN,
     };
   },
   computed: {
@@ -72,6 +74,9 @@ export default {
     progressBarWidth() {
       return (this.currentTime / this.duration) * 100 + '%';
     },
+    innerWidth(){
+      return this.$store
+    }
   },
   methods: {
     // 上一曲
@@ -196,7 +201,7 @@ export default {
   top: 60px;
   display: flex;
   img{
-    width: 10px;
+    width: 30px;
   }
 }
 
