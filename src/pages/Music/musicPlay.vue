@@ -38,7 +38,7 @@
     <div class="musicTitle" :class="store.getInnerWidth <= 720 ? 'mobile' : ''">
       {{ playMusic.title }}
     </div>
-    <div class="voice">
+    <div v-show="store.getInnerWidth > 720" class="voice">
       <img :src="voiceN" />
       <input
         class="phoneRange"
@@ -86,7 +86,7 @@ export default {
       isPlaying: false,
       currentTime: 0,
       duration: 0,
-      volume: 0.5,
+      volume: 1,
       pre,
       next,
       pause,
@@ -212,7 +212,6 @@ export default {
     audio.addEventListener('ended', this.onAudioEnded);
     this.audioSrc = this.audioSrc;
     this.store = mainStore();
-    console.log(this.store.getInnerWidth);
   },
   beforeDestroy() {
     const audio = this.$refs.audio;
@@ -267,7 +266,7 @@ export default {
 .mobile {
   position: absolute;
   left: 5%;
-  top: 70px;
+  bottom: 30px;
 }
 
 .controls button {

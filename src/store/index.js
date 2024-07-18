@@ -154,7 +154,9 @@ export const mainStore = defineStore('main', {
       // 时间数据
       timeData: null,
       // 抖音热歌链接
-      dyMusicList: []
+      dyMusicList: [],
+      // 手动收藏歌单
+      handleAddMusicList: []
     }
   },
   getters: {
@@ -176,8 +178,15 @@ export const mainStore = defineStore('main', {
     getInnerWidth(state) {
       return state.innerWidth
     },
+    getAddMusicList(state){
+      return state.handleAddMusicList
+    }
   },
   actions: {
+    // 添加手动歌单
+    setAddMusicList(value){
+      this.handleAddMusicList.push(value)
+    },
     // 设置抖音热歌链接
     setDyMusicList(value){
       this.dyMusicList = value
@@ -230,6 +239,7 @@ export const mainStore = defineStore('main', {
       'newsArr',
       'linkOpenType',
       'headerFixed',
+      'handleAddMusicList'
     ],
   },
 })

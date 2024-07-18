@@ -1,5 +1,5 @@
 <template>
-  <div class="Music">
+  <div class="Music" :class="store.getInnerWidth <= 720 ? 'phonepadding' : ''">
     <n-tabs
       type="line"
       animated
@@ -57,6 +57,10 @@
     </div>
     <!-- 音乐列表 -->
     <div class="musicListBox" :class="store.getInnerWidth <= 720 ? 'phoneMusicBox' : ''">
+    <div class="playAll" @click="handlePalyAll">
+      <img :src="playAll" />
+      <span>播放全部</span>
+    </div>
       <div class="musicList" :class="store.getInnerWidth <= 720 ? 'phoneMusicScroll' : ''">
         <div
           v-for="(item, index) in musicList"
@@ -68,7 +72,7 @@
           <span>{{ index + 1 }}</span>
           <span>{{ item.title }}</span>
           <img v-if="store.getInnerWidth > 720" :src="playGreen" @click="handleChangeMusicList(item)" />
-          <img v-if="store.getInnerWidth > 720" :src="addMusic" />
+          <img v-if="store.getInnerWidth > 720" :src="addMusic" @click.stop="addMusicList(item)" />
         </div>
       </div>
     </div>
@@ -81,6 +85,7 @@ import { mainStore } from '@/store';
 import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
 import playGreen from './image/playGreen.png';
 import addMusic from './image/addMusic.png';
+import playAll from './image/playAll.png'
 
 // 音乐播放器
 import MusicPlayer from './musicPlay.vue';
@@ -139,6 +144,13 @@ const imageList = [
   },
 ];
 
+// 添加歌单
+const addMusicList = (value) => {
+  // console.log(value);
+  // currentMusicList.value.push(value)
+  store.setAddMusicList(value)
+}
+
 // 获取抖音热歌榜
 const getHotListsData = (isNew = false) => {
   getHotLists('douyin_music', isNew).then((res) => {
@@ -162,24 +174,25 @@ const handleChangeMusicList = (value) => {
   playMusic.value = value;
 };
 
+// 播放全部
+const handlePalyAll = () =>{
+  playMusic.value = musicList.value[0];
+}
+
 // 切换歌单
 const handleChangeMusicMenu = (value) => {
   if (Number(value) === 0) {
     // 抖音歌单
     musicList.value = store.getDyMusicList;
-    playMusic.value = store.getDyMusicList[0];
   } else if (Number(value) === 1) {
     // 收藏歌单
     musicList.value = favoreter.value;
-    playMusic.value = favoreter.value[0];
   } else if (Number(value) === 2) {
     // 混淆歌单
     musicList.value = qyMusicList.value;
-    playMusic.value = qyMusicList.value[0];
   } else {
     // 当前歌单
-    musicList.value = currentMusicList.value;
-    playMusic.value = currentMusicList.value[0];
+    musicList.value = store.getAddMusicList;
   }
 };
 
@@ -220,6 +233,9 @@ onMounted(() => {
 });
 </script>
 <style lang="scss" scoped>
+.phonepadding{
+  padding-top: 0 !important;
+}
 .Music {
   width: 100%;
   height: 100%;
@@ -301,7 +317,6 @@ onMounted(() => {
 
   .phoneMusicBox{
     width: 100%;
-    margin-top: 20px;
   }
 
   .swiper-container-wrapper {
@@ -310,7 +325,6 @@ onMounted(() => {
 
   .swiper-pagination-wrapper {
     text-align: center;
-    margin-top: 10px;
   }
 
   .swiper-pagination {
@@ -318,12 +332,32 @@ onMounted(() => {
     position: static !important;
   }
   .musicList {
-    height: 48vh;
+    height: 46vh;
     overflow: auto;
+    margin-top: 8px;
   }
 
   .phoneMusicScroll {
     height: 70vh;
+  }
+
+  .playAll{
+    line-height: 40px;
+    cursor: pointer;
+    background-color: #31c27c;
+    display: inline-flex;
+    padding: 0 18px;
+    color: white;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    img{
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .n-tab-pane{
+    padding: 0;
   }
 }
 </style>
