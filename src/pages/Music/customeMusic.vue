@@ -1,11 +1,17 @@
 <template>
   <div class="Music">
-    原来音乐模块被网易云发邮件警告了，新的内容建设中。。。
-    <n-tabs type="line" animated justify-content="space-evenly" v-if="store.innerWidth < 720">
-      <n-tab-pane name="oasis" tab="抖音热歌">  </n-tab-pane>
-      <n-tab-pane name="the beatles" tab="收藏歌单">  </n-tab-pane>
-      <n-tab-pane name="jay chou" tab="混淆歌单">  </n-tab-pane>
-      <n-tab-pane name="当前" tab="当前歌单">  </n-tab-pane>
+    <n-tabs
+      type="line"
+      animated
+      justify-content="space-evenly"
+      v-if="store.innerWidth < 720"
+      v-model:value="phoneValue"
+      @update:value="handleChangeMusicMenu"
+    >
+      <n-tab-pane name="0" tab="抖音热歌"> </n-tab-pane>
+      <n-tab-pane name="1" tab="收藏歌单"> </n-tab-pane>
+      <n-tab-pane name="2" tab="混淆歌单"> </n-tab-pane>
+      <n-tab-pane name="3" tab="当前歌单"> </n-tab-pane>
     </n-tabs>
     <div class="PCmusicList" v-show="store.innerWidth >= 720">
       <div class="swiper-container-wrapper">
@@ -15,7 +21,7 @@
               class="swiper-slide"
               v-for="(item, index) in imageList"
               :key="index"
-              @click="handleChangeMusicList(index)"
+              @click="handleChangeMusicMenu(index)"
             >
               <div class="music_sort_box">
                 <div class="listbg" :style="{ 'background-image': `url(${item.imgurl}) ` }">
@@ -50,91 +56,69 @@
       </div>
     </div>
     <!-- 音乐列表 -->
-    <div class="musicListBox">
-      <div class="musicList">
+    <div class="musicListBox" :class="store.getInnerWidth <= 720 ? 'phoneMusicBox' : ''">
+      <div class="musicList" :class="store.getInnerWidth <= 720 ? 'phoneMusicScroll' : ''">
         <div
           v-for="(item, index) in musicList"
           :key="index"
           class="musicName"
           :class="index % 2 == 0 ? 'gmask' : ''"
+          @click="handleChangeMusicList(item)"
         >
           <span>{{ index + 1 }}</span>
-          <span>{{ item.name }}</span>
-          <svg
-            t="1720773627143"
-            class="icon"
-            viewBox="0 0 1024 1024"
-            version="1.1"
-            p-id="10218"
-            width="30"
-            height="30"
-          >
-            <path
-              d="M512 63.015385C263.876923 63.015385 63.015385 263.876923 63.015385 512S263.876923 960.984615 512 960.984615c248.123077 0 448.984615-200.861538 448.984615-448.984615S760.123077 63.015385 512 63.015385z m0 838.892307c-212.676923 0-389.907692-173.292308-389.907692-389.907692S299.323077 122.092308 512 122.092308s389.907692 173.292308 389.907692 389.907692-177.230769 389.907692-389.907692 389.907692z"
-              fill="#31c27c"
-              p-id="10219"
-            ></path>
-            <path
-              d="M484.430769 334.769231c-7.876923-3.938462-15.753846-7.876923-23.630769-7.876923-19.692308 0-35.446154 15.753846-35.446154 35.446154v299.323076c0 7.876923 3.938462 15.753846 7.876923 23.63077 11.815385 15.753846 35.446154 19.692308 51.2 7.876923l196.923077-149.661539c7.876923-7.876923 15.753846-19.692308 15.753846-31.507692 0-11.815385-3.938462-23.630769-15.753846-31.507692l-196.923077-145.723077z m-3.938461 287.507692v-224.492308L630.153846 512l-149.661538 110.276923zM697.107692 512z"
-              fill="#31c27c"
-              p-id="10220"
-            ></path>
-          </svg>
-          <svg
-            t="1720773784823"
-            class="icon"
-            viewBox="0 0 1024 1024"
-            version="1.1"
-            p-id="12091"
-            width="26"
-            height="26"
-          >
-            <path
-              d="M512 0C229.7 0 0 229.7 0 512s229.7 512 512 512 512-229.7 512-512S794.3 0 512 0z m0 979.5C254.2 979.5 44.5 769.8 44.5 512S254.2 44.5 512 44.5 979.5 254.2 979.5 512 769.8 979.5 512 979.5z"
-              fill="#31c27c"
-              p-id="12092"
-            ></path>
-            <path
-              d="M779.2 489.7H534.3V244.9c0-12.3-10.1-22.3-22.3-22.3-12.3 0-22.3 10.1-22.3 22.3v244.8H244.9c-12.3 0-22.3 10.1-22.3 22.3 0 12.3 10.1 22.3 22.3 22.3h244.8v244.9c0 12.3 10.1 22.3 22.3 22.3 12.3 0 22.3-10.1 22.3-22.3V534.3h244.8c12.3 0 22.3-10.1 22.4-22.3 0-12.3-10.1-22.3-22.3-22.3z"
-              fill="#31c27c"
-              p-id="12093"
-            ></path>
-          </svg>
+          <span>{{ item.title }}</span>
+          <img v-if="store.getInnerWidth > 720" :src="playGreen" @click="handleChangeMusicList(item)" />
+          <img v-if="store.getInnerWidth > 720" :src="addMusic" />
         </div>
       </div>
     </div>
-    <MusicPlayer />
+    <MusicPlayer :playMusic="playMusic" @audioEnded="audioEnded"></MusicPlayer>
   </div>
 </template>
 <script setup>
-import { onMounted, nextTick } from 'vue';
+import { onMounted, nextTick, ref } from 'vue';
 import { mainStore } from '@/store';
 import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
+import playGreen from './image/playGreen.png';
+import addMusic from './image/addMusic.png';
+
+// 音乐播放器
 import MusicPlayer from './musicPlay.vue';
+
+// 获取数据方法
+import { getHotLists } from '@/api';
+
 import 'swiper/swiper-bundle.min.css';
 
 const fontMusicStr = 'https://website-image-as.oss-cn-beijing.aliyuncs.com/music/';
 
 const store = mainStore();
 
-const musicList = [
+const musicList = ref();
+const phoneValue = ref(0)
+
+// 收藏歌单
+const favoreter = ref([
   {
-    name: '我们的爱',
+    title: '我们的爱',
     url: `${fontMusicStr}welove.mp4`,
+    index: 0,
   },
+]);
+
+// 混淆歌单
+const qyMusicList = ref([
   {
-    name: '我们的爱',
+    title: '我们的爱',
     url: `${fontMusicStr}welove.mp4`,
+    index: 0,
   },
-  {
-    name: '我们的爱',
-    url: `${fontMusicStr}welove.mp4`,
-  },
-  {
-    name: '我们的爱',
-    url: `${fontMusicStr}welove.mp4`,
-  },
-];
+]);
+
+// 当前歌单
+const currentMusicList = ref([]);
+
+const playMusic = ref();
 
 const imageList = [
   {
@@ -154,6 +138,63 @@ const imageList = [
     desc: '当前歌单',
   },
 ];
+
+// 获取抖音热歌榜
+const getHotListsData = (isNew = false) => {
+  getHotLists('douyin_music', isNew).then((res) => {
+    if (res.code === 200) {
+      musicList.value = res.data.map((x, index) => {
+        return {
+          ...x,
+          index,
+        };
+      });
+      store.setDyMusicList(musicList.value);
+      // playMusic.value = musicList.value[0]
+    } else {
+      $message.error(res.title + res.message);
+    }
+  });
+};
+
+// 播放选中音乐
+const handleChangeMusicList = (value) => {
+  playMusic.value = value;
+};
+
+// 切换歌单
+const handleChangeMusicMenu = (value) => {
+  if (Number(value) === 0) {
+    // 抖音歌单
+    musicList.value = store.getDyMusicList;
+    playMusic.value = store.getDyMusicList[0];
+  } else if (Number(value) === 1) {
+    // 收藏歌单
+    musicList.value = favoreter.value;
+    playMusic.value = favoreter.value[0];
+  } else if (Number(value) === 2) {
+    // 混淆歌单
+    musicList.value = qyMusicList.value;
+    playMusic.value = qyMusicList.value[0];
+  } else {
+    // 当前歌单
+    musicList.value = currentMusicList.value;
+    playMusic.value = currentMusicList.value[0];
+  }
+};
+
+// 播放完成自动播放下一首
+const audioEnded = (value) => {
+  musicList.value.forEach((x, index) => {
+    if (value.index === index) {
+      if (value.index !== musicList.value.length - 1) {
+        playMusic.value = musicList.value[index + 1];
+      } else {
+        playMusic.value = musicList.value[0];
+      }
+    }
+  });
+};
 
 onMounted(() => {
   nextTick(() => {
@@ -175,10 +216,8 @@ onMounted(() => {
       });
     } catch (err) {}
   });
+  getHotListsData();
 });
-const handleChangeMusicList = (val) => {
-  console.log(val);
-};
 </script>
 <style lang="scss" scoped>
 .Music {
@@ -241,15 +280,16 @@ const handleChangeMusicList = (val) => {
       height: 50px;
       padding: 0 16px;
       cursor: pointer;
-      span{
+      span {
         margin-right: 40px;
       }
-      svg {
+      img {
         display: none;
         margin-right: 10px;
+        width: 30px;
       }
       &:hover {
-        svg {
+        img {
           display: block;
         }
       }
@@ -257,6 +297,11 @@ const handleChangeMusicList = (val) => {
     .gmask {
       background-color: rgba(0, 0, 0, 0.02);
     }
+  }
+
+  .phoneMusicBox{
+    width: 100%;
+    margin-top: 20px;
   }
 
   .swiper-container-wrapper {
@@ -271,6 +316,14 @@ const handleChangeMusicList = (val) => {
   .swiper-pagination {
     display: inline-block;
     position: static !important;
+  }
+  .musicList {
+    height: 48vh;
+    overflow: auto;
+  }
+
+  .phoneMusicScroll {
+    height: 70vh;
   }
 }
 </style>

@@ -1,8 +1,9 @@
 <template>
   <div class="music-player">
-    {{ innerWidth }}
     <div class="disc-container" :class="{ spinning: isPlaying }">
+      <img v-if="playMusic.pic" :src="playMusic.pic" alt="Disc" class="disc" @click="playPause" />
       <img
+        v-else
         src="https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/hjcp.jpeg"
         alt="Disc"
         class="disc"
@@ -14,9 +15,10 @@
       @timeupdate="updateTime"
       @loadedmetadata="updateDuration"
       @ended="resetPlayer"
+      @canplay="onCanPlay"
       preload="auto"
     >
-      <source :src="audioSrc" type="audio/mp4" />
+      <source :src="playMusic.url" type="audio/mp4" />
       Your browser does not support the audio element.
     </audio>
     <div class="controls">
@@ -33,9 +35,20 @@
         <img :src="next" />
       </button>
     </div>
+    <div class="musicTitle" :class="store.getInnerWidth <= 720 ? 'mobile' : ''">
+      {{ playMusic.title }}
+    </div>
     <div class="voice">
       <img :src="voiceN" />
-      <input class="phoneRange" type="range" v-model="volume" min="0" max="1" step="0.01" @input="changeVolume" />
+      <input
+        class="phoneRange"
+        type="range"
+        v-model="volume"
+        min="0"
+        max="1"
+        step="0.01"
+        @input="changeVolume"
+      />
     </div>
     <div class="time">{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</div>
     <div class="progress-container" @mousedown="startDrag" @mouseup="endDrag" @mousemove="drag">
@@ -46,17 +59,30 @@
 </template>
 
 <script>
-import play from './image/play.png'
-import pause from './image/pause.png'
-import pre from './image/pre.png'
-import next from './image/next.png'
-import voiceN from './image/voiceN.png'
-
+import play from './image/play.png';
+import pause from './image/pause.png';
+import pre from './image/pre.png';
+import next from './image/next.png';
+import voiceN from './image/voiceN.png';
+import { mainStore } from '@/store';
 
 export default {
+  props: {
+    playMusic: {
+      type: Object,
+      default: {},
+    },
+  },
+  watch: {
+    playMusic: {
+      handler() {
+        // 当播放链接变化时，重新加载音频并播放
+        this.restartAudio();
+      },
+    },
+  },
   data() {
     return {
-      audioSrc: 'https://sf5-hl-cdn-tos.douyinstatic.com/obj/tos-cn-ve-2774/oEgC9eZFHQ1MfSRnrfkzFp8AayDWqAQMABBgUs', // 你的音频文件路径
       isPlaying: false,
       currentTime: 0,
       duration: 0,
@@ -66,20 +92,26 @@ export default {
       pause,
       play,
       voiceN,
+      store: {},
     };
   },
   computed: {
     progressBarWidth() {
       return (this.currentTime / this.duration) * 100 + '%';
     },
-    progressBarWidth() {
-      return (this.currentTime / this.duration) * 100 + '%';
+    innerWidth() {
+      return this.$store;
     },
-    innerWidth(){
-      return this.$store
-    }
   },
   methods: {
+    // 重新加载音频并播放
+    restartAudio() {
+      const audio = this.$refs.audio;
+      audio.load(); // 重新加载音频
+      audio.play(); // 播放音频
+      this.isPlaying = true; // 更新播放状态
+    },
+
     // 上一曲
     prevTrack() {
       console.log(111);
@@ -95,7 +127,10 @@ export default {
       const audio = this.$refs.audio;
       if (this.isPlaying) {
         audio.pause();
+      } else if (this.canPlay) {
+        audio.play();
       } else {
+        audio.load(); // 加载音频文件
         audio.play();
       }
       this.isPlaying = !this.isPlaying;
@@ -159,16 +194,30 @@ export default {
       const sec = Math.floor(seconds % 60);
       return `${minutes}:${sec < 10 ? '0' : ''}${sec}`;
     },
+    onCanPlay() {
+      this.canPlay = true;
+    },
+    // 当音频播放完成时触发，通知父组件
+    onAudioEnded() {
+      // 发送自定义事件到父组件
+      this.$emit('audioEnded', this.playMusic);
+    },
   },
   mounted() {
     const audio = this.$refs.audio;
     audio.volume = this.volume;
+    // 监听音量事件
     audio.addEventListener('volumechange', this.changeVolume);
+    // 监听播放事件
+    audio.addEventListener('ended', this.onAudioEnded);
     this.audioSrc = this.audioSrc;
+    this.store = mainStore();
+    console.log(this.store.getInnerWidth);
   },
   beforeDestroy() {
     const audio = this.$refs.audio;
     audio.removeEventListener('volumechange', this.changeVolume);
+    audio.removeEventListener('ended', this.onAudioEnded);
   },
 };
 </script>
@@ -197,7 +246,7 @@ export default {
   position: absolute;
   left: 5%;
   top: 40px;
-  img{
+  img {
     width: 4vh;
   }
 }
@@ -205,11 +254,20 @@ export default {
 .voice {
   position: absolute;
   right: 5%;
-  top: 60px;
+  top: 55px;
   display: flex;
-  img{
+  img {
     width: 30px;
   }
+}
+
+.musicTitle {
+  margin-top: 8%;
+}
+.mobile {
+  position: absolute;
+  left: 5%;
+  top: 70px;
 }
 
 .controls button {
