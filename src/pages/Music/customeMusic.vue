@@ -76,11 +76,14 @@
         </div>
       </div>
     </div>
-    <MusicPlayer :playMusic="playMusic" @audioEnded="audioEnded"></MusicPlayer>
+    <MusicPlayer :playMusic="playMusic" @audioEnded="audioEnded" ref="musicPlayer"></MusicPlayer>
+    <div class="musicdanceBox" :class="store.getInnerWidth <= 720 ? 'canvasPhone' : ''">
+      <musicdance :audioDom="audioDom" :musicPlayer="musicPlayer"></musicdance>
+    </div>
   </div>
 </template>
 <script setup>
-import { onMounted, nextTick, ref } from 'vue';
+import { onMounted, nextTick, ref, provide } from 'vue';
 import { mainStore } from '@/store';
 import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
 import playGreen from './image/playGreen.png';
@@ -89,6 +92,9 @@ import playAll from './image/playAll.png'
 
 // 音乐播放器
 import MusicPlayer from './musicPlay.vue';
+
+//音谱跳动
+import musicdance from './musicdance.vue';
 
 // 获取数据方法
 import { getHotLists } from '@/api';
@@ -101,6 +107,8 @@ const store = mainStore();
 
 const musicList = ref();
 const phoneValue = ref(0)
+const musicPlayer = ref()
+const audioDom = ref()
 
 // 收藏歌单
 const favoreter = ref([
@@ -146,8 +154,6 @@ const imageList = [
 
 // 添加歌单
 const addMusicList = (value) => {
-  // console.log(value);
-  // currentMusicList.value.push(value)
   store.setAddMusicList(value)
 }
 
@@ -175,7 +181,7 @@ const handleChangeMusicList = (value) => {
 };
 
 // 播放全部
-const handlePalyAll = () =>{
+const handlePalyAll = () => {
   playMusic.value = musicList.value[0];
 }
 
@@ -205,6 +211,8 @@ const audioEnded = (value) => {
       } else {
         playMusic.value = musicList.value[0];
       }
+      // 调用子组件播放
+      musicPlayer.value.playPause()
     }
   });
 };
@@ -230,6 +238,7 @@ onMounted(() => {
     } catch (err) {}
   });
   getHotListsData();
+  audioDom.value = musicPlayer.value.$refs.audio
 });
 </script>
 <style lang="scss" scoped>
@@ -289,7 +298,11 @@ onMounted(() => {
 
   .musicListBox {
     width: 86%;
-    margin: auto;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    transform: translateX(-50%);
     .musicName {
       display: flex;
       align-items: center;
@@ -358,6 +371,18 @@ onMounted(() => {
   }
   .n-tab-pane{
     padding: 0;
+  }
+  .musicdanceBox{
+    position: absolute;
+    bottom: 18vh;
+    right: 0;
+  }
+  .canvasPhone{
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%)
   }
 }
 </style>

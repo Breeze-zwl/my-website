@@ -156,10 +156,15 @@ export const mainStore = defineStore('main', {
       // 抖音热歌链接
       dyMusicList: [],
       // 手动收藏歌单
-      handleAddMusicList: []
+      handleAddMusicList: [],
+      //音乐是否正在播放
+      musicPalying: false
     }
   },
   getters: {
+    getMusicPalying(state){
+      return state.musicPalying
+    },
     getDyMusicList(state){
       return state.dyMusicList
     },
@@ -183,6 +188,9 @@ export const mainStore = defineStore('main', {
     }
   },
   actions: {
+    setMusicPalying(value){
+      this.musicPalying = value
+    },
     // 添加手动歌单
     setAddMusicList(value){
       this.handleAddMusicList.push(value)

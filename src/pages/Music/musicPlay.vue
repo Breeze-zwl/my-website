@@ -80,6 +80,11 @@ export default {
         this.restartAudio();
       },
     },
+    isPlaying: {
+      handler() {
+        this.store.setMusicPalying(this.isPlaying);
+      },
+    },
   },
   data() {
     return {
@@ -235,6 +240,7 @@ export default {
   position: fixed;
   bottom: 0;
   height: 18vh;
+  z-index: 999;
 }
 
 .controls {
@@ -261,7 +267,8 @@ export default {
 }
 
 .musicTitle {
-  margin-top: 8%;
+  position: absolute;
+  bottom: 36px;
 }
 .mobile {
   position: absolute;
