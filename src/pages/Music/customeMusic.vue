@@ -113,18 +113,68 @@ const audioDom = ref()
 // 收藏歌单
 const favoreter = ref([
   {
-    title: '我们的爱',
-    url: `${fontMusicStr}welove.mp4`,
+    title: '人生',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E4%BA%BA%E7%94%9F.m4a`,
     index: 0,
+  },
+  {
+    title: '关山酒dj',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%85%B3%E5%B1%B1%E9%85%92dj.m4a`,
+    index: 1,
+  },
+  {
+    title: '回忆总是慢动作',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%9B%9E%E5%BF%86%E6%80%BB%E6%98%AF%E6%85%A2%E5%8A%A8%E4%BD%9C.m4a`,
+    index: 2,
+  },
+  {
+    title: '多雷 - 泡沫 (Swang Remix) ',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%A4%9A%E9%9B%B7%20-%20%E6%B3%A1%E6%B2%AB%20%28Swang%20Remix%29%20%5Bmqms2%5D%281%29.mp3`,
+    index: 3,
+  },
+  {
+    title: '完美',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%AE%8C%E7%BE%8E.m4a`,
+    index: 4,
+  },
+  {
+    title: '小河淌水1952',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%B0%8F%E6%B2%B3%E6%B7%8C%E6%B0%B41952.m4a`,
+    index: 5,
+  },
+  {
+    title: '我们的爱',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%88%91%E4%BB%AC%E7%9A%84%E7%88%B1.mp4`,
+    index: 6,
+  },
+  {
+    title: '我又一个人出发了',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%88%91%E5%8F%88%E4%B8%80%E4%B8%AA%E4%BA%BA%E5%87%BA%E5%8F%91%E4%BA%86.m4a`,
+    index: 7,
+  },
+  {
+    title: '是想你的声音啊',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%98%AF%E6%83%B3%E4%BD%A0%E7%9A%84%E5%A3%B0%E9%9F%B3%E5%95%8A.m4a`,
+    index: 8,
+  },
+  {
+    title: '月下',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%9C%88%E4%B8%8B.m4a`,
+    index: 9,
+  },
+  {
+    title: '高二三班.m4a',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E9%AB%98%E4%BA%8C%E4%B8%89%E7%8F%AD.m4a`,
+    index: 10,
   },
 ]);
 
 // 混淆歌单
 const qyMusicList = ref([
-  {
-    title: '我们的爱',
-    url: `${fontMusicStr}welove.mp4`,
-    index: 0,
+{
+    title: '多雷 - 泡沫 (Swang Remix) ',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%A4%9A%E9%9B%B7%20-%20%E6%B3%A1%E6%B2%AB%20%28Swang%20Remix%29%20%5Bmqms2%5D%281%29.mp3`,
+    index: 3,
   },
 ]);
 
