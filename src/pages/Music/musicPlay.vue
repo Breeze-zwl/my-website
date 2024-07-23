@@ -18,7 +18,7 @@
       @canplay="onCanPlay"
       preload="auto"
     >
-      <source v-if="playMusic == 'mp4'" :src="playMusic.url" type="audio/mp4" />
+      <source v-if="playMusic.type == 'mp4'" :src="playMusic.url" type="audio/mp4" />
       <source v-else :src="playMusic.url" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
