@@ -113,20 +113,20 @@ const audioDom = ref()
 // 收藏歌单
 const favoreter = ref([
   {
-    title: '人生',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E4%BA%BA%E7%94%9F.m4a`,
+    title: 'Dehors',
+    url: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/music/Dehors.m4a',
     index: 0,
     type: 'mp4'
   },
   {
     title: '关山酒dj',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%85%B3%E5%B1%B1%E9%85%92dj.m4a`,
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%85%B3%E5%B1%B1%E9%85%92dj%281%29.m4a`,
     index: 1,
     type: 'mp4'
   },
   {
-    title: '回忆总是慢动作',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%9B%9E%E5%BF%86%E6%80%BB%E6%98%AF%E6%85%A2%E5%8A%A8%E4%BD%9C.m4a`,
+    title: '月下',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%9C%88%E4%B8%8B.m4a`,
     index: 2,
     type: 'mp4'
   },
@@ -137,14 +137,14 @@ const favoreter = ref([
     type: 'mp3'
   },
   {
-    title: '完美',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%AE%8C%E7%BE%8E.m4a`,
+    title: '小河淌水1952',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%B0%8F%E6%B2%B3%E6%B7%8C%E6%B0%B41952.m4a`,
     index: 4,
     type: 'mp4'
   },
   {
-    title: '小河淌水1952',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%B0%8F%E6%B2%B3%E6%B7%8C%E6%B0%B41952.m4a`,
+    title: '完美',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%AE%8C%E7%BE%8E.m4a`,
     index: 5,
     type: 'mp4'
   },
@@ -156,7 +156,7 @@ const favoreter = ref([
   },
   {
     title: '我又一个人出发了',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%88%91%E5%8F%88%E4%B8%80%E4%B8%AA%E4%BA%BA%E5%87%BA%E5%8F%91%E4%BA%86.m4a`,
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%88%91%E5%8F%88%E4%B8%80%E4%B8%AA%E4%BA%BA%E5%87%BA%E5%8F%91%E4%BA%86%281%29.m4a`,
     index: 7,
     type: 'mp4'
   },
@@ -167,15 +167,21 @@ const favoreter = ref([
     type: 'mp4'
   },
   {
-    title: '月下',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%9C%88%E4%B8%8B.m4a`,
+    title: '高二三班.m4a',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E9%AB%98%E4%BA%8C%E4%B8%89%E7%8F%AD.m4a`,
     index: 9,
     type: 'mp4'
   },
   {
-    title: '高二三班.m4a',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E9%AB%98%E4%BA%8C%E4%B8%89%E7%8F%AD.m4a`,
+    title: '人生',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E4%BA%BA%E7%94%9F.m4a`,
     index: 10,
+    type: 'mp4'
+  },
+  {
+    title: '回忆总是慢动作',
+    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%9B%9E%E5%BF%86%E6%80%BB%E6%98%AF%E6%85%A2%E5%8A%A8%E4%BD%9C.m4a`,
+    index: 11,
     type: 'mp4'
   },
 ]);
