@@ -56,11 +56,12 @@
       </div>
     </div>
     <!-- 音乐列表 -->
+    <n-spin :show="loadingMusic">
     <div class="musicListBox" :class="store.getInnerWidth <= 720 ? 'phoneMusicBox' : ''">
-    <div class="playAll" @click="handlePalyAll">
-      <img :src="playAll" />
-      <span>播放全部</span>
-    </div>
+      <div class="playAll" @click="handlePalyAll">
+        <img :src="playAll" />
+        <span>播放全部</span>
+      </div>
       <div class="musicList" :class="store.getInnerWidth <= 720 ? 'phoneMusicScroll' : ''">
         <div
           v-for="(item, index) in musicList"
@@ -71,11 +72,16 @@
         >
           <span>{{ index + 1 }}</span>
           <span>{{ item.title }}</span>
-          <img v-if="store.getInnerWidth > 720" :src="playGreen" @click="handleChangeMusicList(item)" />
+          <img
+            v-if="store.getInnerWidth > 720"
+            :src="playGreen"
+            @click="handleChangeMusicList(item)"
+          />
           <img v-if="store.getInnerWidth > 720" :src="addMusic" @click.stop="addMusicList(item)" />
         </div>
       </div>
     </div>
+  </n-spin>
     <MusicPlayer :playMusic="playMusic" @audioEnded="audioEnded" ref="musicPlayer"></MusicPlayer>
     <div class="musicdanceBox" :class="store.getInnerWidth <= 720 ? 'canvasPhone' : ''">
       <musicdance :audioDom="audioDom" :musicPlayer="musicPlayer"></musicdance>
@@ -88,7 +94,9 @@ import { mainStore } from '@/store';
 import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
 import playGreen from './image/playGreen.png';
 import addMusic from './image/addMusic.png';
-import playAll from './image/playAll.png'
+import playAll from './image/playAll.png';
+
+import listObjects from '@/api/getOssMusic';
 
 // 音乐播放器
 import MusicPlayer from './musicPlay.vue';
@@ -106,89 +114,17 @@ const fontMusicStr = 'https://website-image-as.oss-cn-beijing.aliyuncs.com/music
 const store = mainStore();
 
 const musicList = ref();
-const phoneValue = ref(0)
-const musicPlayer = ref()
-const audioDom = ref()
+const phoneValue = ref(0);
+const musicPlayer = ref();
+const audioDom = ref();
+const loadingMusic = ref(true)
 
 // 收藏歌单
-const favoreter = ref([
-  {
-    title: 'Dehors',
-    url: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/music/Dehors.m4a',
-    index: 0,
-    type: 'mp4'
-  },
-  {
-    title: '关山酒dj',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%85%B3%E5%B1%B1%E9%85%92dj%281%29.m4a`,
-    index: 1,
-    type: 'mp4'
-  },
-  {
-    title: '月下',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%9C%88%E4%B8%8B.m4a`,
-    index: 2,
-    type: 'mp4'
-  },
-  {
-    title: '多雷 - 泡沫 (Swang Remix) ',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%A4%9A%E9%9B%B7%20-%20%E6%B3%A1%E6%B2%AB%20%28Swang%20Remix%29%20%5Bmqms2%5D%281%29.mp3`,
-    index: 3,
-    type: 'mp3'
-  },
-  {
-    title: '小河淌水1952',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%B0%8F%E6%B2%B3%E6%B7%8C%E6%B0%B41952.m4a`,
-    index: 4,
-    type: 'mp4'
-  },
-  {
-    title: '完美',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%AE%8C%E7%BE%8E.m4a`,
-    index: 5,
-    type: 'mp4'
-  },
-  {
-    title: '我们的爱',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%88%91%E4%BB%AC%E7%9A%84%E7%88%B1.mp4`,
-    index: 6,
-    type: 'mp4'
-  },
-  {
-    title: '我又一个人出发了',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%88%91%E5%8F%88%E4%B8%80%E4%B8%AA%E4%BA%BA%E5%87%BA%E5%8F%91%E4%BA%86%281%29.m4a`,
-    index: 7,
-    type: 'mp4'
-  },
-  {
-    title: '是想你的声音啊',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E6%98%AF%E6%83%B3%E4%BD%A0%E7%9A%84%E5%A3%B0%E9%9F%B3%E5%95%8A.m4a`,
-    index: 8,
-    type: 'mp4'
-  },
-  {
-    title: '高二三班.m4a',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E9%AB%98%E4%BA%8C%E4%B8%89%E7%8F%AD.m4a`,
-    index: 9,
-    type: 'mp4'
-  },
-  {
-    title: '人生',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E4%BA%BA%E7%94%9F.m4a`,
-    index: 10,
-    type: 'mp4'
-  },
-  {
-    title: '回忆总是慢动作',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%9B%9E%E5%BF%86%E6%80%BB%E6%98%AF%E6%85%A2%E5%8A%A8%E4%BD%9C.m4a`,
-    index: 11,
-    type: 'mp4'
-  },
-]);
+const favoreter = ref();
 
 // 混淆歌单
 const qyMusicList = ref([
-{
+  {
     title: '多雷 - 泡沫 (Swang Remix) ',
     url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%A4%9A%E9%9B%B7%20-%20%E6%B3%A1%E6%B2%AB%20%28Swang%20Remix%29%20%5Bmqms2%5D%281%29.mp3`,
     index: 3,
@@ -221,8 +157,8 @@ const imageList = [
 
 // 添加歌单
 const addMusicList = (value) => {
-  store.setAddMusicList(value)
-}
+  store.setAddMusicList(value);
+};
 
 // 获取抖音热歌榜
 const getHotListsData = (isNew = false) => {
@@ -235,7 +171,7 @@ const getHotListsData = (isNew = false) => {
         };
       });
       store.setDyMusicList(musicList.value);
-      // playMusic.value = musicList.value[0]
+      loadingMusic.value = false
     } else {
       $message.error(res.title + res.message);
     }
@@ -250,7 +186,7 @@ const handleChangeMusicList = (value) => {
 // 播放全部
 const handlePalyAll = () => {
   playMusic.value = musicList.value[0];
-}
+};
 
 // 切换歌单
 const handleChangeMusicMenu = (value) => {
@@ -269,22 +205,24 @@ const handleChangeMusicMenu = (value) => {
   }
 };
 
-// 播放完成自动播放下一首
-const audioEnded = (value) => {
-  musicList.value.forEach((x, index) => {
-    if (value.index === index) {
-      if (value.index !== musicList.value.length - 1) {
-        playMusic.value = musicList.value[index + 1];
-      } else {
-        playMusic.value = musicList.value[0];
-      }
-      // 调用子组件播放
-      musicPlayer.value.playPause()
+// 切换上一首或者下一首
+const audioEnded = (value, handle) => {
+  if (handle === 'nextMusic') {
+    if (musicList.value[value.index + 1]) {
+      playMusic.value = musicList.value[value.index + 1];
+    } else {
+      playMusic.value = musicList.value[0];
     }
-  });
+  } else {
+    if (value.index - 1 >= 0) {
+      playMusic.value = musicList.value[value.index - 1];
+    } else {
+      playMusic.value = musicList.value[musicList.value.length - 1];
+    }
+  }
 };
 
-onMounted(() => {
+onMounted(async () => {
   nextTick(() => {
     try {
       new Swiper('.swiper', {
@@ -305,11 +243,12 @@ onMounted(() => {
     } catch (err) {}
   });
   getHotListsData();
-  audioDom.value = musicPlayer.value.$refs.audio
+  audioDom.value = musicPlayer.value.$refs.audio;
+  favoreter.value = await listObjects();
 });
 </script>
 <style lang="scss" scoped>
-.phonepadding{
+.phonepadding {
   padding-top: 0 !important;
 }
 .Music {
@@ -320,6 +259,7 @@ onMounted(() => {
   .PCmusicList {
     width: 86%;
     margin: auto;
+    max-width: 1300px;
     .music_sort_box {
       display: flex;
       flex-direction: column;
@@ -395,7 +335,7 @@ onMounted(() => {
     }
   }
 
-  .phoneMusicBox{
+  .phoneMusicBox {
     width: 100%;
   }
 
@@ -421,7 +361,7 @@ onMounted(() => {
     height: 70vh;
   }
 
-  .playAll{
+  .playAll {
     line-height: 40px;
     cursor: pointer;
     background-color: #31c27c;
@@ -431,25 +371,25 @@ onMounted(() => {
     align-items: center;
     gap: 6px;
     margin-top: 8px;
-    img{
+    img {
       width: 20px;
       height: 20px;
     }
   }
-  .n-tab-pane{
+  .n-tab-pane {
     padding: 0;
   }
-  .musicdanceBox{
+  .musicdanceBox {
     position: absolute;
     bottom: 18vh;
     right: 0;
   }
-  .canvasPhone{
+  .canvasPhone {
     width: 100%;
     position: absolute;
     top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
   }
 }
 </style>

@@ -1,5 +1,6 @@
 // import axios from "axios";
-import fetchJsonp from "fetch-jsonp";
+import fetchJsonp from 'fetch-jsonp';
+import listObjects from './getOssMusic'
 
 /**
  * 音乐播放器
@@ -7,21 +8,19 @@ import fetchJsonp from "fetch-jsonp";
 
 // 获取音乐播放列表
 export const getPlayerList = async (server, type, id) => {
-  return []
+  return [];
   const res = await fetch(
     `${import.meta.env.VITE_SONG_API}?server=${server}&type=${type}&id=${id}`
   );
   const data = await res.json();
 
-  if (data[0].url.startsWith("@")) {
-    const [handle, jsonpCallback, jsonpCallbackFunction, url] = data[0].url
-      .split("@")
-      .slice(1);
+  if (data[0].url.startsWith('@')) {
+    const [handle, jsonpCallback, jsonpCallbackFunction, url] = data[0].url.split('@').slice(1);
     const jsonpData = await fetchJsonp(url).then((res) => res.json());
     const domain = (
-      jsonpData.req_0.data.sip.find((i) => !i.startsWith("http://ws")) ||
+      jsonpData.req_0.data.sip.find((i) => !i.startsWith('http://ws')) ||
       jsonpData.req_0.data.sip[0]
-    ).replace("http://", "https://");
+    ).replace('http://', 'https://');
 
     return data.map((v, i) => ({
       title: v.name || v.title,
@@ -47,7 +46,7 @@ export const getPlayerList = async (server, type, id) => {
 
 // 获取一言数据
 export const getHitokoto = async () => {
-  const res = await fetch("https://v1.hitokoto.cn");
+  const res = await fetch('https://v1.hitokoto.cn');
   return await res.json();
 };
 
@@ -75,11 +74,11 @@ export const getWeather = async (key, city) => {
 
 // 获取社交链接
 export const getSocialLinks = async () => {
-  const res = await fetch("/socialLinks.json");
+  const res = await fetch('/socialLinks.json');
   return await res.json();
 };
 // 获取热榜数据
-import axios from "@/api/request";
+import axios from '@/api/request';
 /**
  * 获取热榜分类数据
  * @param {string} type 热榜分类名称
@@ -88,7 +87,7 @@ import axios from "@/api/request";
  */
 export const getHotLists = (type, isNew) => {
   return axios({
-    method: "GET",
-    url: `/${type}${isNew ? "/new" : "/"}`,
+    method: 'GET',
+    url: `/${type}${isNew ? '/new' : '/'}`,
   });
 };

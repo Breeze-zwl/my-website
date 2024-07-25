@@ -39,6 +39,9 @@
     <div class="musicTitle" :class="store.getInnerWidth <= 720 ? 'mobile' : ''">
       {{ playMusic.title }}
     </div>
+    <div class="turnButton" :class="store.getInnerWidth <= 720 ? 'trunmobile' : ''" @click="handleTurn">
+      <img :src="turnImgUrl" />
+    </div>
     <div v-show="store.getInnerWidth > 720" class="voice">
       <img :src="voiceN" />
       <input
@@ -65,6 +68,8 @@ import pause from './image/pause.png';
 import pre from './image/pre.png';
 import next from './image/next.png';
 import voiceN from './image/voiceN.png';
+import singleT from './image/singleT.png';
+import turnT from './image/turnT.png';
 import { mainStore } from '@/store';
 
 export default {
@@ -99,6 +104,7 @@ export default {
       play,
       voiceN,
       store: {},
+      turnStatus: 1,
     };
   },
   computed: {
@@ -108,8 +114,17 @@ export default {
     innerWidth() {
       return this.$store;
     },
+    turnImgUrl() {
+      if (this.turnStatus === 1) {
+        return turnT;
+      }
+      return singleT;
+    },
   },
   methods: {
+    handleTurn() {
+      this.turnStatus === 1 ? this.turnStatus = 2 : this.turnStatus = 1
+    },
     // 重新加载音频并播放
     restartAudio() {
       const audio = this.$refs.audio;
@@ -120,12 +135,13 @@ export default {
 
     // 上一曲
     prevTrack() {
-      console.log(111);
+      console.log(this.playMusic);
+      this.$emit('audioEnded', this.playMusic, 'prevMusic');
     },
 
     // 下一曲
     nextTrack() {
-      console.log(222);
+      this.$emit('audioEnded', this.playMusic, 'nextMusic');
     },
 
     // 播放-暂停
@@ -205,8 +221,11 @@ export default {
     },
     // 当音频播放完成时触发，通知父组件
     onAudioEnded() {
-      // 发送自定义事件到父组件
-      this.$emit('audioEnded', this.playMusic);
+      if(this.turnStatus === 2){
+        this.restartAudio()
+      }else{
+        this.$emit('audioEnded', this.playMusic, 'nextMusic');
+      }
     },
   },
   mounted() {
@@ -227,7 +246,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .music-player {
   display: flex;
   flex-direction: column;
@@ -251,7 +270,7 @@ export default {
   margin-top: 10px;
   position: absolute;
   left: 5%;
-  top: 40px;
+  bottom: 56px;
   img {
     width: 4vh;
   }
@@ -260,11 +279,25 @@ export default {
 .voice {
   position: absolute;
   right: 5%;
-  top: 55px;
+  bottom: 56px;
   display: flex;
   img {
     width: 30px;
   }
+}
+.turnButton {
+  position: absolute;
+  right: 5%;
+  bottom: 90px;
+  display: flex;
+  cursor: pointer;
+  img {
+    width: 30px;
+  }
+}
+
+.trunmobile{
+  bottom: 56px;
 }
 
 .musicTitle {

@@ -32,7 +32,6 @@ watch(
   (value) => {
     console.log(value);
     if (value) {
-      console.log('进来了吗');
       initAudio();
       draw();
     }
