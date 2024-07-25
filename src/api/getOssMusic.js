@@ -1,10 +1,14 @@
 import OSS from 'ali-oss';
 
+const OSS_ACCESS_KEY_ID = import.meta.env.VITE_OSS_ACCESS_KEY_ID
+const OSS_ACCESS_KEY_SECRET = import.meta.env.VITE_OSS_ACCESS_KEY_SECRET
+
+
 // 配置你的OSS访问密钥
 const client = new OSS({
   region: 'oss-cn-beijing', // 替换为你的OSS区域
-  accessKeyId: 'LTAI5t8EB9pT7MKH2wWu7ekV',
-  accessKeySecret: '7EtD2mcFDpJqmdOYm0MBn6mZwlEddr',
+  accessKeyId: OSS_ACCESS_KEY_ID,
+  accessKeySecret: OSS_ACCESS_KEY_SECRET,
   bucket: 'website-image-as',
 });
 
