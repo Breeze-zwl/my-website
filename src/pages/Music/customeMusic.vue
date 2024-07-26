@@ -410,7 +410,7 @@ onMounted(async () => {
     align-items: center;
     gap: 6px;
     margin-top: 8px;
-    width: 100%;
+    border-radius: 8px;
     img {
       width: 20px;
       height: 20px;
