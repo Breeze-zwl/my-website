@@ -90,9 +90,15 @@
               @click="handleChangeMusicList(item)"
             />
             <img
-              v-if="store.getInnerWidth > 720"
+              v-if="store.getInnerWidth > 720 && pcActive !== 3"
               :src="addMusic"
               @click.stop="addMusicList(item)"
+            />
+            <img
+              class="pcReduceClass"
+              v-if="store.getInnerWidth > 720 && pcActive === 3"
+              :src="reducemusic"
+              @click.stop="reduceMusicList(item)"
             />
           </div>
         </div>
@@ -127,8 +133,6 @@ import { getHotLists } from '@/api';
 
 import 'swiper/swiper-bundle.min.css';
 
-const fontMusicStr = 'https://website-image-as.oss-cn-beijing.aliyuncs.com/music/';
-
 const store = mainStore();
 
 const musicList = ref();
@@ -136,6 +140,7 @@ const phoneValue = ref(0);
 const musicPlayer = ref();
 const audioDom = ref();
 const loadingMusic = ref(true);
+const pcActive = ref()
 
 // 收藏歌单
 const favoreter = ref();
@@ -158,18 +163,22 @@ const imageList = [
   {
     imgurl: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/1.jpg',
     desc: '抖音热歌',
+    index: '0'
   },
   {
     imgurl: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/9.jpg',
     desc: '收藏歌单',
+    index: '1'
   },
   {
     imgurl: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/4.jpg',
     desc: '混淆歌单',
+    index: '2'
   },
   {
     imgurl: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/16.jpg',
     desc: '当前歌单',
+    index: '3'
   },
 ];
 
@@ -195,10 +204,10 @@ const getHotListsData = (isNew = false) => {
         };
       });
       store.setDyMusicList(musicList.value);
-      loadingMusic.value = false;
     } else {
       $message.error(res.title + res.message);
     }
+    loadingMusic.value = false;
   });
 };
 
@@ -214,6 +223,7 @@ const handlePalyAll = () => {
 
 // 切换歌单
 const handleChangeMusicMenu = (value) => {
+  pcActive.value = value
   if (Number(value) === 0) {
     // 抖音歌单
     musicList.value = store.getDyMusicList;
@@ -269,6 +279,9 @@ onMounted(async () => {
   getHotListsData();
   audioDom.value = musicPlayer.value.$refs.audio;
   favoreter.value = await listObjects();
+  setTimeout(()=>{
+    loadingMusic.value = false;
+  }, 5000)
 });
 </script>
 <style lang="scss" scoped>
@@ -352,6 +365,9 @@ onMounted(async () => {
         img {
           display: block;
         }
+      }
+      .pcReduceClass{
+        width: 38px;
       }
     }
     .gmask {
