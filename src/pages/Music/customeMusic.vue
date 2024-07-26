@@ -56,32 +56,48 @@
       </div>
     </div>
     <!-- 音乐列表 -->
-    <n-spin :show="loadingMusic">
-    <div class="musicListBox" :class="store.getInnerWidth <= 720 ? 'phoneMusicBox' : ''">
-      <div class="playAll" @click="handlePalyAll">
-        <img :src="playAll" />
-        <span>播放全部</span>
-      </div>
-      <div class="musicList" :class="store.getInnerWidth <= 720 ? 'phoneMusicScroll' : ''">
-        <div
-          v-for="(item, index) in musicList"
-          :key="index"
-          class="musicName"
-          :class="index % 2 == 0 ? 'gmask' : ''"
-          @click="handleChangeMusicList(item)"
-        >
-          <span>{{ index + 1 }}</span>
-          <span>{{ item.title }}</span>
-          <img
-            v-if="store.getInnerWidth > 720"
-            :src="playGreen"
+    <el-skeleton :loading="loadingMusic" animated :rows="8">
+      <div class="musicListBox" :class="store.getInnerWidth <= 720 ? 'phoneMusicBox' : ''">
+        <div class="playAll" @click="handlePalyAll">
+          <img :src="playAll" />
+          <span>播放全部</span>
+        </div>
+        <div class="musicList" :class="store.getInnerWidth <= 720 ? 'phoneMusicScroll' : ''">
+          <div
+            v-for="(item, index) in musicList"
+            :key="index"
+            class="musicName"
+            :class="index % 2 == 0 ? 'gmask' : ''"
             @click="handleChangeMusicList(item)"
-          />
-          <img v-if="store.getInnerWidth > 720" :src="addMusic" @click.stop="addMusicList(item)" />
+          >
+            <span>{{ index + 1 }}</span>
+            <span>{{ item.title }}</span>
+            <img
+              v-if="store.getInnerWidth <= 720 && phoneValue !== '3'"
+              class="addCurrentMusic"
+              :src="addmusicmobile"
+              @click.stop="addMusicList(item)"
+            />
+            <img
+              v-if="store.getInnerWidth <= 720 && phoneValue === '3'"
+              class="addCurrentMusic"
+              :src="reducemusic"
+              @click.stop="reduceMusicList(item)"
+            />
+            <img
+              v-if="store.getInnerWidth > 720"
+              :src="playGreen"
+              @click="handleChangeMusicList(item)"
+            />
+            <img
+              v-if="store.getInnerWidth > 720"
+              :src="addMusic"
+              @click.stop="addMusicList(item)"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </n-spin>
+    </el-skeleton>
     <MusicPlayer :playMusic="playMusic" @audioEnded="audioEnded" ref="musicPlayer"></MusicPlayer>
     <div class="musicdanceBox" :class="store.getInnerWidth <= 720 ? 'canvasPhone' : ''">
       <musicdance :audioDom="audioDom" :musicPlayer="musicPlayer"></musicdance>
@@ -89,12 +105,14 @@
   </div>
 </template>
 <script setup>
-import { onMounted, nextTick, ref, provide } from 'vue';
+import { onMounted, nextTick, ref } from 'vue';
 import { mainStore } from '@/store';
 import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
 import playGreen from './image/playGreen.png';
 import addMusic from './image/addMusic.png';
 import playAll from './image/playAll.png';
+import addmusicmobile from './image/addmusicmobile.png';
+import reducemusic from './image/reducemusic.png';
 
 import listObjects from '@/api/getOssMusic';
 
@@ -117,7 +135,7 @@ const musicList = ref();
 const phoneValue = ref(0);
 const musicPlayer = ref();
 const audioDom = ref();
-const loadingMusic = ref(true)
+const loadingMusic = ref(true);
 
 // 收藏歌单
 const favoreter = ref();
@@ -160,6 +178,12 @@ const addMusicList = (value) => {
   store.setAddMusicList(value);
 };
 
+// 减少歌单
+const reduceMusicList = (value) => {
+  store.setReduceMusic(value)
+  musicList.value = store.getAddMusicList;
+}
+
 // 获取抖音热歌榜
 const getHotListsData = (isNew = false) => {
   getHotLists('douyin_music', isNew).then((res) => {
@@ -171,7 +195,7 @@ const getHotListsData = (isNew = false) => {
         };
       });
       store.setDyMusicList(musicList.value);
-      loadingMusic.value = false
+      loadingMusic.value = false;
     } else {
       $message.error(res.title + res.message);
     }
@@ -354,7 +378,6 @@ onMounted(async () => {
   .musicList {
     height: 46vh;
     overflow: auto;
-    margin-top: 8px;
   }
 
   .phoneMusicScroll {
@@ -371,6 +394,7 @@ onMounted(async () => {
     align-items: center;
     gap: 6px;
     margin-top: 8px;
+    width: 100%;
     img {
       width: 20px;
       height: 20px;
@@ -390,6 +414,19 @@ onMounted(async () => {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+  .el-skeleton {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  .addCurrentMusic {
+    display: block !important;
+    width: 36px !important;
+    margin: 0 !important;
+    position: absolute;
+    right: 26px;
   }
 }
 </style>

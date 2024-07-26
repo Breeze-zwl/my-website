@@ -15,15 +15,19 @@
             <div id="main-menu">
               <div>
                 <ul class="menu">
+                  <li class="  ">
+                    <a @click.stop="handlezonesort('About/albums')">相册</a>
+                  </li>
+                  <li>
+                    <a @click.stop="handlezonesort('Like')">兴趣爱好</a>
+                  </li>
                   <li>
                     <a @click.stop="handlezonesort('work/tal')">工作经历</a>
                   </li>
                   <!-- <li>
                     <a @click.stop="handlezonesort('life')">生活经历</a>
                   </li> -->
-                  <li>
-                    <a @click.stop="handlezonesort('Like')">兴趣爱好</a>
-                  </li>
+
                   <!-- <li>
                     <a href="archives.html">归档</a>
                     <ul class="sub-menu">
@@ -41,9 +45,6 @@
                       </li>
                     </ul>
                   </li> -->
-                  <li class="  ">
-                    <a @click.stop="handlezonesort('About/albums')">相册</a>
-                  </li>
                 </ul>
               </div>
             </div>

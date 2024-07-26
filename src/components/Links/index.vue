@@ -56,7 +56,7 @@ let linksData = [
   {
     icon: Cloud,
     name: '空间',
-    link: '/Zone/work/tal',
+    link: '/Zone/About/albums',
   },
   {
     icon: CompactDisc,

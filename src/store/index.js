@@ -1,5 +1,5 @@
-import { Log } from '@icon-park/vue-next'
-import { defineStore } from 'pinia'
+import { Log } from '@icon-park/vue-next';
+import { defineStore } from 'pinia';
 
 export const mainStore = defineStore('main', {
   state: () => {
@@ -39,8 +39,8 @@ export const mainStore = defineStore('main', {
           show: true,
         },
         {
-          label: "抖音",
-          value: "douyin",
+          label: '抖音',
+          value: 'douyin',
           order: 2,
           show: true,
         },
@@ -105,47 +105,47 @@ export const mainStore = defineStore('main', {
           show: true,
         },
         {
-          label: "豆瓣新片榜",
-          value: "douban_new",
+          label: '豆瓣新片榜',
+          value: 'douban_new',
           order: 13,
-          show: true
+          show: true,
         },
         {
-          label: "英雄联盟",
-          value: "lol",
+          label: '英雄联盟',
+          value: 'lol',
           order: 14,
-          show: true
+          show: true,
         },
         {
-          label: "快手",
-          value: "kuaishou",
+          label: '快手',
+          value: 'kuaishou',
           order: 15,
-          show: true
+          show: true,
         },
         {
-          label: "原神",
-          value: "genshin",
+          label: '原神',
+          value: 'genshin',
           order: 16,
-          show: true
+          show: true,
         },
         {
-          label: "抖音热歌榜",
-          value: "douyin_music",
+          label: '抖音热歌榜',
+          value: 'douyin_music',
           order: 17,
-          show: true
+          show: true,
         },
         {
-          label: "微信读书",
-          value: "weread",
+          label: '微信读书',
+          value: 'weread',
           order: 18,
-          show: true
+          show: true,
         },
         {
-          label: "永杰无间",
-          value: "yjwujian",
+          label: '永杰无间',
+          value: 'yjwujian',
           order: 19,
-          show: true
-        }
+          show: true,
+        },
       ],
       // 链接跳转方式
       linkOpenType: 'open',
@@ -158,82 +158,86 @@ export const mainStore = defineStore('main', {
       // 手动收藏歌单
       handleAddMusicList: [],
       //音乐是否正在播放
-      musicPalying: false
-    }
+      musicPalying: false,
+    };
   },
   getters: {
-    getMusicPalying(state){
-      return state.musicPalying
+    getMusicPalying(state) {
+      return state.musicPalying;
     },
-    getDyMusicList(state){
-      return state.dyMusicList
+    getDyMusicList(state) {
+      return state.dyMusicList;
     },
     // 获取歌词
     getPlayerLrc(state) {
-      return state.playerLrc
+      return state.playerLrc;
     },
     // 获取歌曲信息
     getPlayerData(state) {
       return {
         name: state.playerTitle,
         artist: state.playerArtist,
-      }
+      };
     },
     // 获取页面宽度
     getInnerWidth(state) {
-      return state.innerWidth
+      return state.innerWidth;
     },
-    getAddMusicList(state){
-      return state.handleAddMusicList
-    }
+    getAddMusicList(state) {
+      return state.handleAddMusicList;
+    },
   },
   actions: {
-    setMusicPalying(value){
-      this.musicPalying = value
+    setMusicPalying(value) {
+      this.musicPalying = value;
     },
     // 添加手动歌单
-    setAddMusicList(value){
-      this.handleAddMusicList.push(value)
+    setAddMusicList(value) {
+      this.handleAddMusicList.push(value);
+    },
+    // 删除歌单中的歌
+    setReduceMusic(value) {
+      this.handleAddMusicList = this.handleAddMusicList.filter((item) => item.title !== value.title);
     },
     // 设置抖音热歌链接
-    setDyMusicList(value){
-      this.dyMusicList = value
+    setDyMusicList(value) {
+      this.dyMusicList = value;
     },
     // 更改当前页面宽度
     setInnerWidth(value) {
-      this.innerWidth = value
+      this.innerWidth = value;
       if (value >= 720) {
-        this.mobileOpenState = false
-        this.mobileFuncState = false
-        this.isMobile = false
+        this.mobileOpenState = false;
+        this.mobileFuncState = false;
+        this.isMobile = false;
       } else {
-        this.isMobile = true
+        this.isMobile = true;
       }
     },
     // 更改播放状态
     setPlayerState(value) {
       if (value) {
-        this.playerState = false
+        this.playerState = false;
       } else {
-        this.playerState = true
+        this.playerState = true;
       }
     },
     // 更改歌词
     setPlayerLrc(value) {
-      this.playerLrc = value
+      this.playerLrc = value;
     },
     // 更改歌曲数据
     setPlayerData(title, artist) {
-      this.playerTitle = title
-      this.playerArtist = artist
+      this.playerTitle = title;
+      this.playerArtist = artist;
     },
     //分割线  下面是今日热点
     // 更改系统主题
     setSiteTheme(val) {
       $message.info(`已切换至${val === 'dark' ? '深色模式' : '浅色模式'}`, {
         showIcon: false,
-      })
-      this.siteTheme = val
+      });
+      this.siteTheme = val;
     },
   },
   persist: {
@@ -247,7 +251,7 @@ export const mainStore = defineStore('main', {
       'newsArr',
       'linkOpenType',
       'headerFixed',
-      'handleAddMusicList'
+      'handleAddMusicList',
     ],
   },
-})
+});
