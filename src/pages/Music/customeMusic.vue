@@ -62,7 +62,7 @@
           <img :src="playAll" />
           <span>播放全部</span>
         </div>
-        <div class="musicList" :class="store.getInnerWidth <= 720 ? 'phoneMusicScroll' : ''">
+        <div class="postToremMusicList" :class="store.getInnerWidth <= 720 ? 'phoneMusicScroll' : ''">
           <div
             v-for="(item, index) in musicList"
             :key="index"
@@ -386,8 +386,9 @@ onMounted(async () => {
     display: inline-block;
     position: static !important;
   }
-  .musicList {
-    height: 46vh;
+  .postToremMusicList {
+    height: 280px;
+    height: 44vh;
     overflow: auto;
   }
 
