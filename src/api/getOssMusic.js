@@ -13,8 +13,8 @@ const client = new OSS({
 });
 
 // 列出Bucket中的所有文件
-const listObjects = async () => {
-  const folder = 'music/';
+const listObjects = async (musicFin) => {
+  const folder = `${musicFin}/`;
   const files = [];
 
   try {

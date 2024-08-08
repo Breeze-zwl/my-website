@@ -145,14 +145,8 @@ const pcActive = ref()
 // 收藏歌单
 const favoreter = ref();
 
-// 混淆歌单
-const qyMusicList = ref([
-  {
-    title: '多雷 - 泡沫 (Swang Remix) ',
-    url: `https://website-image-as.oss-cn-beijing.aliyuncs.com/music/%E5%A4%9A%E9%9B%B7%20-%20%E6%B3%A1%E6%B2%AB%20%28Swang%20Remix%29%20%5Bmqms2%5D%281%29.mp3`,
-    index: 3,
-  },
-]);
+// 剪辑歌单
+const qyMusicList = ref();
 
 // 当前歌单
 const currentMusicList = ref([]);
@@ -172,7 +166,7 @@ const imageList = [
   },
   {
     imgurl: 'https://website-image-as.oss-cn-beijing.aliyuncs.com/image-bg/4.jpg',
-    desc: '混淆歌单',
+    desc: '剪辑歌单',
     index: '2'
   },
   {
@@ -278,7 +272,8 @@ onMounted(async () => {
   });
   getHotListsData();
   audioDom.value = musicPlayer.value.$refs.audio;
-  favoreter.value = await listObjects();
+  favoreter.value = await listObjects('music');
+  qyMusicList.value = await listObjects('cutMusic')
   setTimeout(()=>{
     loadingMusic.value = false;
   }, 5000)
