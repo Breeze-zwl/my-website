@@ -21,4 +21,4 @@ jobs:
           endpoint: 'oss-cn-beijing.aliyuncs.com'
           access-key-id: ${{ secrets.OSS_KEY }}
           access-key-secret: ${{ secrets.OSS_SECRET }}
-      - run: ossutil cp -rf ./dist oss://website-product
+      - run: ossutil cp -rf ./dist oss://website-al
